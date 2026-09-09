@@ -48,7 +48,7 @@ export function Hero({ onScrollToWork }: HeroProps) {
         </>
       )}
 
-      <div className="container relative z-10 py-20 lg:py-28">
+      <div className="container relative z-10 px-4 py-20 pb-32 sm:px-6 lg:px-8 lg:py-28 lg:pb-36">
         <div className="max-w-5xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -121,7 +121,7 @@ export function Hero({ onScrollToWork }: HeroProps) {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: reducedMotion ? 0 : 0.8, delay: 0.6, ease: 'easeOut' }}
-            className="mt-16 flex flex-wrap items-center justify-center gap-6 text-neutral-500 text-sm"
+            className="mt-12 flex flex-wrap items-center justify-center gap-x-5 gap-y-3 px-2 text-center text-neutral-500 text-sm sm:mt-16"
           >
             <div className="flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-vinho-500" aria-hidden="true" />
@@ -142,7 +142,7 @@ export function Hero({ onScrollToWork }: HeroProps) {
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: reducedMotion ? 0 : 1, delay: 0.8, ease: 'easeOut' }}
-          className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-neutral-500"
+          className="absolute bottom-4 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-neutral-500 sm:bottom-6 lg:bottom-10"
           aria-hidden="true"
         >
           <span className="text-xs uppercase tracking-wider">Role para baixo</span>

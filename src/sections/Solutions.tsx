@@ -4,7 +4,7 @@ import { OptionWheel } from '../components/ui/OptionWheel';
 import { solutionTypes } from '../data/portfolio';
 import { useReducedMotion, useIntersectionObserver } from '../hooks/useIntersectionObserver';
 import { cn } from '../utils/helpers';
-import { visualAssets } from '../data/portfolio';
+import { recursosVisuais } from '../data/portfolio';
 
 export function Solutions() {
   const reducedMotion = useReducedMotion();
@@ -26,7 +26,7 @@ export function Solutions() {
 
       <div className="max-w-4xl mx-auto mb-10 overflow-hidden rounded-3xl border border-preto-700 bg-preto-900/50">
         <img
-          src={visualAssets.solutions[0]}
+          src={recursosVisuais.solutions[0]}
           alt="Composição visual de soluções digitais conectadas"
           width="1200"
           height="800"

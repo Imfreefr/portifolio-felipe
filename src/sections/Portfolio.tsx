@@ -1,9 +1,12 @@
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { FolderOpen, Plus, ArrowRight, Code2, Database, Globe, Layers } from 'lucide-react';
 import { Section, SectionHeader } from '../components/Section';
 import { Button } from '../components/Button';
+import { BentoGrid } from '../components/ui/BentoGrid';
+import SmoothTab from '../components/ui/SmoothTab';
 import { getWhatsAppUrl } from '../utils/helpers';
-import { personalInfo, visualAssets, type Project } from '../data/portfolio';
+import { personalInfo, recursosVisuais, type Project } from '../data/portfolio';
 import { useReducedMotion, useIntersectionObserver } from '../hooks/useIntersectionObserver';
 import { cn } from '../utils/helpers';
 
@@ -11,17 +14,24 @@ interface PortfolioProps {
   onCtaClick?: () => void;
 }
 
-const showcaseProjects: Project[] = [
+const projetosDestaque: Project[] = [
   {
     title: 'Sistemas Web sob medida',
     description: 'Dashboards, painéis administrativos e aplicações preparadas para crescer com o negócio.',
-    image: visualAssets.portfolio[0],
+    image: recursosVisuais.portfolio[0],
     technologies: ['React', 'TypeScript', 'APIs'],
     category: 'Full-stack',
   },
 ];
 
-const placeholderProjects = [
+const portfolioTabs = [
+  { id: 'sites', title: 'Sites', description: 'Experiências institucionais e landing pages com foco em clareza, conversão e performance.', icon: Globe, color: '#d94a5f' },
+  { id: 'sistemas', title: 'Sistemas', description: 'Dashboards, CRMs e aplicações web preparadas para fluxos de negócio reais.', icon: Database, color: '#b86b9a' },
+  { id: 'ecommerce', title: 'E-commerce', description: 'Catálogos e lojas digitais pensados para facilitar descoberta e compra.', icon: Layers, color: '#8f6ab3' },
+  { id: 'integracoes', title: 'Integrações', description: 'APIs, webhooks e automações conectando ferramentas e dados.', icon: Code2, color: '#d4777f' },
+];
+
+const projetosModelo = [
   { icon: Globe, title: 'Sites Institucionais', desc: 'Empresas, profissionais liberais, ONGs' },
   { icon: Database, title: 'Sistemas Web', desc: 'CRM, ERP, dashboards, painéis admin' },
   { icon: Layers, title: 'E-commerce', desc: 'Lojas virtuais, marketplaces, catálogos' },
@@ -30,6 +40,7 @@ const placeholderProjects = [
 
 export function Portfolio({ onCtaClick }: PortfolioProps) {
   const reducedMotion = useReducedMotion();
+  const [abaProjeto, setSelectedPortfolioTab] = useState('sites');
   const { ref, hasIntersected } = useIntersectionObserver({ threshold: 0.15 });
 
   const handleCtaClick = () => {
@@ -61,9 +72,9 @@ export function Portfolio({ onCtaClick }: PortfolioProps) {
         className="max-w-3xl mx-auto"
       >
         <div className="relative">
-          <div className="aspect-video bg-preto-900/60 backdrop-blur-sm border border-preto-700 rounded-2xl relative overflow-hidden group">
+          <div className="relative min-h-[28rem] sm:aspect-video sm:min-h-0 bg-preto-900/60 backdrop-blur-sm border border-preto-700 rounded-2xl overflow-hidden group">
             <img
-              src={showcaseProjects[0].image}
+              src={projetosDestaque[0].image}
               alt="Preview abstrata de um sistema web"
               width="1200"
               height="800"
@@ -73,7 +84,7 @@ export function Portfolio({ onCtaClick }: PortfolioProps) {
             />
             <div className="absolute inset-0 bg-gradient-to-br from-vinho-500/10 via-transparent to-vinho-600/10" aria-hidden="true" />
             
-            <div className="relative z-10 flex flex-col items-center justify-center h-full p-12 text-center">
+            <div className="relative z-10 flex flex-col items-center justify-center h-full p-6 sm:p-12 text-center">
               <motion.div
                 initial={{ scale: 0.8, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
@@ -110,12 +121,13 @@ export function Portfolio({ onCtaClick }: PortfolioProps) {
                 <Button
                   variant="primary"
                   size="lg"
+                  className="w-full sm:w-auto"
                   onClick={handleCtaClick}
                   rightIcon={<ArrowRight className="w-5 h-5" aria-hidden="true" />}
                 >
                   Vamos criar seu projeto?
                 </Button>
-                <Button variant="outline" size="lg" onClick={onCtaClick}>
+                <Button variant="outline" size="lg" className="w-full sm:w-auto" onClick={onCtaClick}>
                   Ver serviços
                 </Button>
               </motion.div>
@@ -142,34 +154,40 @@ export function Portfolio({ onCtaClick }: PortfolioProps) {
             )}
           </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: hasIntersected ? 1 : 0, y: hasIntersected ? 0 : 20 }}
-            transition={{ duration: reducedMotion ? 0 : 0.6, delay: 0.6, ease: 'easeOut' }}
-            className="mt-12 grid grid-cols-2 lg:grid-cols-4 gap-4"
-            role="list"
-            aria-label="Tipos de projetos que desenvolvo"
-          >
-            {placeholderProjects.map((project, index) => (
-              <motion.article
-                key={project.title}
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: reducedMotion ? 0 : 0.5, delay: 0.7 + index * 0.1, ease: 'easeOut' }}
-                className={cn(
-                  'card-hover p-4 text-center group',
-                  'bg-preto-900/60 border-preto-700'
-                )}
-                role="listitem"
-              >
-                <div className="w-10 h-10 rounded-lg bg-vinho-500/10 flex items-center justify-center mx-auto mb-3 group-hover:bg-vinho-500/20 transition-colors">
-                  <project.icon className="w-5 h-5 text-vinho-400" aria-hidden="true" />
-                </div>
-                <h4 className="font-semibold text-white text-sm mb-1">{project.title}</h4>
-                <p className="text-neutral-500 text-xs">{project.desc}</p>
-              </motion.article>
-            ))}
-          </motion.div>
+          <div className="mt-12 space-y-6" role="list" aria-label="Tipos de projetos que desenvolvo">
+            <SmoothTab
+              items={portfolioTabs}
+              defaultTabId="sites"
+              onChange={setSelectedPortfolioTab}
+            />
+            <BentoGrid
+              key={abaProjeto}
+              reducedMotion={reducedMotion}
+              columns={{ base: 1, sm: 2, md: 4, lg: 4, xl: 4 }}
+              gap={4}
+              items={projetosModelo.map((project, index) => {
+                const Icon = project.icon;
+                return {
+                  className: index === 0 ? 'sm:col-span-2 lg:col-span-2' : '',
+                  children: (
+                    <div className="relative flex h-full min-h-48 flex-col justify-between overflow-hidden p-5">
+                      <div className="absolute -right-8 -top-8 h-28 w-28 rounded-full bg-vinho-500/10 blur-2xl transition-opacity group-hover:opacity-100" aria-hidden="true" />
+                      <div className="relative z-10 flex items-start justify-between gap-4">
+                        <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-vinho-500/10 text-vinho-400">
+                          <Icon className="h-5 w-5" aria-hidden="true" />
+                        </div>
+                        <span className="text-xs font-medium uppercase tracking-wider text-vinho-400/80">Projeto</span>
+                      </div>
+                      <div className="relative z-10 mt-8">
+                        <h4 className="font-semibold text-white text-lg">{portfolioTabs.find((tab) => tab.id === abaProjeto)?.title} · {project.title}</h4>
+                        <p className="mt-2 text-neutral-400 text-sm leading-relaxed">{project.desc}</p>
+                      </div>
+                    </div>
+                  ),
+                };
+              })}
+            />
+          </div>
         </div>
       </motion.div>
     </Section>

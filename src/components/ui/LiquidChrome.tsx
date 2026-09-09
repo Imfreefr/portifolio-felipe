@@ -144,18 +144,54 @@ export default function LiquidChrome({
       container.addEventListener('touchmove', handleTouchMove);
     }
 
-    let animationId: number;
+    let animationId: number | null = null;
+    let isVisible = true;
+    let isPageVisible = !document.hidden;
+
     function update(t: number) {
-      animationId = requestAnimationFrame(update);
+      if (!isVisible || !isPageVisible) {
+        animationId = null;
+        return;
+      }
       program.uniforms.uTime.value = t * 0.001 * speed;
       renderer.render({ scene: mesh });
+      animationId = requestAnimationFrame(update);
     }
-    animationId = requestAnimationFrame(update);
+
+    const startAnimation = () => {
+      if (animationId === null && isVisible && isPageVisible) {
+        animationId = requestAnimationFrame(update);
+      }
+    };
+
+    const stopAnimation = () => {
+      if (animationId !== null) {
+        cancelAnimationFrame(animationId);
+        animationId = null;
+      }
+    };
+
+    const visibilityObserver = new IntersectionObserver(([entry]) => {
+      isVisible = entry.isIntersecting;
+      if (isVisible) startAnimation();
+      else stopAnimation();
+    }, { threshold: 0.01 });
+
+    const handlePageVisibility = () => {
+      isPageVisible = !document.hidden;
+      if (isPageVisible) startAnimation();
+      else stopAnimation();
+    };
 
     container.appendChild(gl.canvas);
+    visibilityObserver.observe(container);
+    document.addEventListener('visibilitychange', handlePageVisibility);
+    startAnimation();
 
     return () => {
-      cancelAnimationFrame(animationId);
+      if (animationId !== null) cancelAnimationFrame(animationId);
+      visibilityObserver.disconnect();
+      document.removeEventListener('visibilitychange', handlePageVisibility);
       window.removeEventListener('resize', resize);
       if (interactive) {
         container.removeEventListener('mousemove', handleMouseMove);

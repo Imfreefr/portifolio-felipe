@@ -14,7 +14,7 @@ import { Card } from '../components/Card';
 import { services } from '../data/portfolio';
 import { useReducedMotion, useIntersectionObserver } from '../hooks/useIntersectionObserver';
 import { cn } from '../utils/helpers';
-import { visualAssets } from '../data/portfolio';
+import { recursosVisuais } from '../data/portfolio';
 
 const serviceIcons: Record<string, React.ComponentType<{ className?: string }>> = {
   Globe,
@@ -74,7 +74,7 @@ export function Services() {
               whileHover={{ y: reducedMotion ? 0 : -4 }}
             >
               <img
-                src={visualAssets.services[0]}
+                src={recursosVisuais.services[0]}
                 alt="Interface digital abstrata representando soluções web"
                 width="1200"
                 height="800"

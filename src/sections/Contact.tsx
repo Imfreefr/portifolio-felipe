@@ -3,7 +3,7 @@ import { MessageSquare, MapPin, Clock, ArrowRight, Send } from 'lucide-react';
 import { Section, SectionHeader } from '../components/Section';
 import { Button } from '../components/Button';
 import { getWhatsAppUrl } from '../utils/helpers';
-import { contactInfo, personalInfo, visualAssets } from '../data/portfolio';
+import { contactInfo, personalInfo, recursosVisuais } from '../data/portfolio';
 import { useReducedMotion, useIntersectionObserver } from '../hooks/useIntersectionObserver';
 import { useMemo } from 'react';
 
@@ -57,7 +57,7 @@ export function Contact() {
         >
           <div className="bg-preto-900/60 backdrop-blur-sm border border-preto-700 rounded-2xl p-8 lg:p-10">
             <img
-              src={visualAssets.contact[0]}
+              src={recursosVisuais.contact[0]}
               alt="Composição abstrata sobre comunicação digital"
               width="1200"
               height="800"
@@ -206,38 +206,6 @@ export function Contact() {
         </motion.div>
       </motion.div>
 
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: hasIntersected ? 1 : 0, y: hasIntersected ? 0 : 20 }}
-        transition={{ duration: reducedMotion ? 0 : 0.6, delay: 0.5, ease: 'easeOut' }}
-        className="mt-16"
-      >
-        <div className="bg-preto-900/40 backdrop-blur-sm border border-preto-700 rounded-2xl p-8 lg:p-12">
-          <div className="max-w-3xl mx-auto text-center">
-            <h4 className="text-lg font-semibold text-white mb-4">
-              Prefere enviar os detalhes do projeto por aqui?
-            </h4>
-            <p className="text-neutral-400 mb-8">
-              A estrutura para formulário de contato já está preparada. 
-              Quando você quiser, posso integrar com EmailJS, Formspree, Netlify Forms ou seu backend preferido.
-            </p>
-            <div className="flex flex-wrap items-center justify-center gap-3 text-sm">
-              <span className="px-3 py-1 rounded-full bg-preto-800 border border-preto-600 text-neutral-400">
-                EmailJS
-              </span>
-              <span className="px-3 py-1 rounded-full bg-preto-800 border border-preto-600 text-neutral-400">
-                Formspree
-              </span>
-              <span className="px-3 py-1 rounded-full bg-preto-800 border border-preto-600 text-neutral-400">
-                Netlify Forms
-              </span>
-              <span className="px-3 py-1 rounded-full bg-preto-800 border border-preto-600 text-neutral-400">
-                Backend customizado
-              </span>
-            </div>
-          </div>
-        </div>
-      </motion.div>
     </Section>
   );
 }

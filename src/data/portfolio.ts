@@ -50,7 +50,7 @@ export interface Project {
   github?: string;
 }
 
-export const visualAssets = {
+export const recursosVisuais = {
   about: ['/images/about/developer-workspace.svg'],
   services: ['/images/services/digital-interface.svg'],
   portfolio: ['/images/portfolio/web-system.svg'],

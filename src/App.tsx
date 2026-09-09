@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Dock from './components/ui/Dock';
+import StaggeredMenu from './components/ui/StaggeredMenu';
 import { Hero } from './sections/Hero';
 import { About } from './sections/About';
 import { Services } from './sections/Services';
@@ -85,10 +86,34 @@ function App() {
           <Footer />
           <WhatsAppFloat />
 
-          <div className="fixed bottom-0 left-0 right-0 z-50 pointer-events-none">
+          <div className="hidden lg:block fixed bottom-0 left-0 right-0 z-50 pointer-events-none">
             <div className="pointer-events-auto flex justify-center">
               <Dock items={dockItems} />
             </div>
+          </div>
+
+          <div className="lg:hidden">
+            <StaggeredMenu
+              position="right"
+              items={[
+                { label: 'Sobre', ariaLabel: 'Ir para Sobre mim', link: '#sobre' },
+                { label: 'Serviços', ariaLabel: 'Ir para Serviços', link: '#servicos' },
+                { label: 'Tecnologias', ariaLabel: 'Ir para Tecnologias', link: '#tecnologias' },
+                { label: 'Portfolio', ariaLabel: 'Ir para Portfolio', link: '#portfolio' },
+                { label: 'Formação', ariaLabel: 'Ir para Formação', link: '#formacao' },
+                { label: 'Contato', ariaLabel: 'Ir para Contato', link: '#contato' },
+              ]}
+              socialItems={[
+                { label: 'GitHub', link: 'https://github.com/ImFreeFr' },
+                { label: 'Instagram', link: 'https://www.instagram.com/fp_souzx/' },
+                { label: 'LinkedIn', link: 'https://www.linkedin.com/in/felipe-souza-nascimento-915615228/' },
+              ]}
+              displaySocials
+              displayItemNumbering
+              colors={['#3d1224', '#7a2c42']}
+              accentColor="#d94a5f"
+              logoUrl="/imgs/noctra-simbolo-branco-transparente.png"
+            />
           </div>
         </motion.div>
       </AnimatePresence>

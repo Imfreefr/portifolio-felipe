@@ -1,118 +1,72 @@
 import { motion } from 'framer-motion';
-import { MessageSquare, ClipboardList, PenTool, Code2, CheckCircle2, Rocket, ArrowRight } from 'lucide-react';
+import { ArrowRight, CheckCircle2, ClipboardList, Code2, MessageSquare, PenTool, Rocket } from 'lucide-react';
 import { Section, SectionHeader } from '../components/Section';
 import { processSteps } from '../data/portfolio';
 import { useReducedMotion, useIntersectionObserver } from '../hooks/useIntersectionObserver';
 import { cn } from '../utils/helpers';
 
 const stepIcons = [MessageSquare, ClipboardList, PenTool, Code2, CheckCircle2, Rocket];
-const stepColors = [
-  'from-vinho-500 to-vinho-600',
-  'from-vinho-500 to-rose-500',
-  'from-emerald-500 to-teal-500',
-  'from-orange-500 to-red-500',
-  'from-emerald-500 to-teal-500',
-  'from-vinho-500 to-vinho-600',
-];
+const stepAccents = ['#d94a5f', '#e67280', '#26b99a', '#f97316', '#2dd4bf', '#d94a5f'];
 
 export function Process() {
   const reducedMotion = useReducedMotion();
-  const { ref, hasIntersected } = useIntersectionObserver({ threshold: 0.1 });
+  const { ref, hasIntersected } = useIntersectionObserver({ threshold: 0.12 });
 
   return (
-    <Section
-      ref={ref}
-      id="processo"
-      size="lg"
-      background="grid"
-      aria-labelledby="process-title"
-    >
+    <Section ref={ref} id="processo" size="lg" background="radial" aria-labelledby="process-title">
       <SectionHeader
         title="Processo de Trabalho"
-        subtitle="Como transformo sua ideia em uma solução digital completa, do conceito à entrega."
+        subtitle="Uma jornada clara, colaborativa e orientada a resultados para transformar sua ideia em uma solução digital completa."
         align="center"
       />
 
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: hasIntersected ? 1 : 0 }}
-        transition={{ duration: reducedMotion ? 0 : 0.5 }}
-        className="relative max-w-4xl mx-auto"
-      >
-        <div className="absolute left-4 lg:left-6 top-0 bottom-0 w-[2px] bg-gradient-to-b from-vinho-500/50 via-transparent to-transparent" aria-hidden="true" />
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-0">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: hasIntersected ? 1 : 0, y: hasIntersected ? 0 : 24 }}
+          transition={{ duration: reducedMotion ? 0 : 0.6 }}
+          className="mb-8 grid gap-4 rounded-3xl border border-vinho-500/20 bg-preto-900/60 p-5 sm:p-7 lg:grid-cols-[1.4fr_.6fr] lg:p-8"
+        >
+          <div>
+            <p className="mb-3 text-xs font-semibold uppercase tracking-[.2em] text-vinho-400">Do primeiro contato à entrega</p>
+            <h3 className="max-w-2xl text-2xl font-bold tracking-tight text-white sm:text-3xl">Cada etapa tem um propósito e você acompanha tudo de perto.</h3>
+          </div>
+          <div className="flex items-end lg:justify-end">
+            <div className="rounded-2xl border border-preto-700 bg-preto-950/70 px-4 py-3 text-sm text-neutral-300">
+              <span className="block text-2xl font-bold text-vinho-400">06</span>
+              etapas organizadas
+            </div>
+          </div>
+        </motion.div>
 
-        <div className="space-y-12 lg:space-y-16" role="list" aria-label="Etapas do processo de desenvolvimento">
+        <div className="relative grid gap-4 md:grid-cols-2" role="list" aria-label="Etapas do processo de desenvolvimento">
+          <div className="pointer-events-none absolute left-1/2 top-8 hidden h-[calc(100%-4rem)] w-px -translate-x-1/2 bg-gradient-to-b from-vinho-500/50 via-vinho-500/15 to-transparent md:block" aria-hidden="true" />
           {processSteps.map((step, index) => {
             const Icon = stepIcons[index];
-            const color = stepColors[index];
-
+            const accent = stepAccents[index];
             return (
               <motion.article
                 key={step.step}
-                initial={{ opacity: 0, x: -40 }}
-                animate={{
-                  opacity: hasIntersected ? 1 : 0,
-                  x: hasIntersected ? 0 : -40,
-                }}
-                transition={{
-                  duration: reducedMotion ? 0 : 0.7,
-                  delay: reducedMotion ? 0 : 0.1 + index * 0.1,
-                  ease: 'easeOut',
-                }}
-                className="relative timeline-item"
                 role="listitem"
+                initial={{ opacity: 0, y: 24 }}
+                animate={{ opacity: hasIntersected ? 1 : 0, y: hasIntersected ? 0 : 24 }}
+                transition={{ duration: reducedMotion ? 0 : 0.55, delay: reducedMotion ? 0 : index * 0.08 }}
+                whileHover={{ y: reducedMotion ? 0 : -4 }}
+                className={cn('group relative overflow-hidden rounded-2xl border border-preto-700 bg-preto-900/75 p-5 shadow-lg shadow-black/10 sm:p-6', index === 0 ? 'md:col-span-2' : '')}
               >
-                <motion.div
-                  initial={{ scale: 0, opacity: 0 }}
-                  animate={{ scale: hasIntersected ? 1 : 0, opacity: hasIntersected ? 1 : 0 }}
-                  transition={{
-                    duration: reducedMotion ? 0 : 0.5,
-                    delay: reducedMotion ? 0 : 0.3 + index * 0.1,
-                    type: 'spring',
-                    stiffness: 300,
-                    damping: 20,
-                  }}
-                  className="timeline-dot"
-                  style={{ boxShadow: `0 0 20px ${color.split(' ')[0].replace('from-', '')}` }}
-                  aria-hidden="true"
-                >
-                  <span className="absolute inset-0 rounded-full animate-ping opacity-75" style={{ background: `linear-gradient(135deg, ${color})` }} aria-hidden="true" />
-                </motion.div>
-
-                <div className="bg-preto-900/60 backdrop-blur-sm border border-preto-700 rounded-2xl p-6 lg:p-8 group relative overflow-hidden">
-                  <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-transparent via-[${color.split(' ')[0].replace('from-', '')}]/10 to-transparent rounded-tr-2xl rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" aria-hidden="true" />
-
-                  <div className="relative z-10 flex items-start gap-6">
-                    <div className="flex-shrink-0 w-14 h-14 rounded-xl flex items-center justify-center" style={{ background: `linear-gradient(135deg, ${color})` }}>
-                      <div className="absolute inset-0 rounded-xl blur-lg opacity-30" style={{ background: `linear-gradient(135deg, ${color})` }} aria-hidden="true" />
-                      <Icon className="w-7 h-7 text-white relative z-10" aria-hidden="true" />
-                    </div>
-
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center gap-3 mb-3">
-                        <span className="text-2xl lg:text-3xl font-bold text-white/10 font-mono">
-                          {step.step}
-                        </span>
-                        <h3 className="text-xl lg:text-2xl font-bold text-white">
-                          {step.title}
-                        </h3>
-                      </div>
-
-                      <p className="text-neutral-400 leading-relaxed pr-4">
-                        {step.description}
-                      </p>
-                    </div>
-
-                    <motion.div
-                      initial={{ opacity: 0, x: 20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ duration: reducedMotion ? 0 : 0.4, delay: 0.4 + index * 0.1 }}
-                      className="flex-shrink-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                      aria-hidden="true"
-                    >
-                      <ArrowRight className="w-6 h-6 text-vinho-400" />
-                    </motion.div>
+                <div className="absolute right-0 top-0 h-32 w-32 rounded-full opacity-20 blur-3xl transition-opacity group-hover:opacity-50" style={{ backgroundColor: accent }} aria-hidden="true" />
+                <div className="relative z-10 flex items-start gap-4 sm:gap-5">
+                  <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-2xl border border-white/10" style={{ backgroundColor: `${accent}22`, color: accent }}>
+                    <Icon className="h-6 w-6" aria-hidden="true" />
                   </div>
+                  <div className="min-w-0 flex-1">
+                    <div className="mb-2 flex flex-wrap items-center gap-2 sm:gap-3">
+                      <span className="font-mono text-xs font-bold tracking-widest" style={{ color: accent }}>{step.step}</span>
+                      <h3 className="text-lg font-bold text-white sm:text-xl">{step.title}</h3>
+                    </div>
+                    <p className="text-sm leading-relaxed text-neutral-400 sm:text-base">{step.description}</p>
+                  </div>
+                  <ArrowRight className="mt-1 hidden h-5 w-5 flex-shrink-0 text-vinho-400 opacity-0 transition-opacity group-hover:opacity-100 sm:block" aria-hidden="true" />
                 </div>
               </motion.article>
             );
@@ -120,19 +74,21 @@ export function Process() {
         </div>
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: hasIntersected ? 1 : 0, y: hasIntersected ? 0 : 20 }}
-          transition={{ duration: reducedMotion ? 0 : 0.6, delay: 0.7, ease: 'easeOut' }}
-          className="mt-12 text-center"
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: hasIntersected ? 1 : 0, y: hasIntersected ? 0 : 16 }}
+          transition={{ duration: reducedMotion ? 0 : 0.5, delay: 0.5 }}
+          className="mt-8 flex flex-col items-center justify-between gap-4 rounded-2xl border border-vinho-500/25 bg-vinho-500/10 p-5 text-center sm:flex-row sm:p-6 sm:text-left"
         >
-          <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-preto-900/60 border border-preto-700">
-            <Rocket className="w-5 h-5 text-vinho-400" aria-hidden="true" />
-            <span className="text-neutral-300 font-medium">
-              Pronto para começar? Vamos conversar sobre seu projeto
-            </span>
+          <div className="flex items-center gap-3">
+            <Rocket className="h-5 w-5 flex-shrink-0 text-vinho-400" aria-hidden="true" />
+            <span className="font-medium text-neutral-200">Pronto para começar? Vamos conversar sobre seu projeto.</span>
           </div>
+          <a href="#contato" className="inline-flex items-center gap-2 font-semibold text-vinho-400 transition-colors hover:text-vinho-300" onClick={(event) => { event.preventDefault(); document.getElementById('contato')?.scrollIntoView({ behavior: 'smooth' }); }}>
+            Entrar em contato
+            <ArrowRight className="h-4 w-4" aria-hidden="true" />
+          </a>
         </motion.div>
-      </motion.div>
+      </div>
     </Section>
   );
 }

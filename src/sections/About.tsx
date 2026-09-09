@@ -5,7 +5,8 @@ import { Card } from '../components/Card';
 import { aboutText } from '../data/portfolio';
 import { useReducedMotion, useIntersectionObserver } from '../hooks/useIntersectionObserver';
 import { cn } from '../utils/helpers';
-import { visualAssets } from '../data/portfolio';
+import { recursosVisuais } from '../data/portfolio';
+import Carousel from '../components/ui/Carousel';
 
 const highlights = [
   { icon: GraduationCap, title: 'Formação Técnica', desc: 'Curso Técnico em Informática', color: 'text-vinho-400', bgColor: 'bg-vinho-500/10' },
@@ -94,7 +95,7 @@ export function About() {
             
 <div className="relative bg-preto-900/80 backdrop-blur-sm border border-preto-700 rounded-3xl p-4 sm:p-6 h-full overflow-hidden">
                <img
-                 src={visualAssets.about[0]}
+                 src={recursosVisuais.about[0]}
                  alt="Composição visual de um workspace de desenvolvimento web"
                  width="1200"
                  height="800"
@@ -102,47 +103,17 @@ export function About() {
                  decoding="async"
                  className="w-full aspect-[3/2] object-cover rounded-2xl border border-preto-700/70 mb-6"
                />
-               <div className="space-y-6">
-                <div className="flex items-center gap-4 p-4 bg-preto-950/50 rounded-xl border border-preto-700">
-                  <div className="w-12 h-12 rounded-lg bg-vinho-500/10 flex items-center justify-center">
-                    <Code className="w-6 h-6 text-vinho-400" aria-hidden="true" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-white">Desenvolvimento Full-Stack</h4>
-                    <p className="text-neutral-400 text-sm">Front-end & Back-end com tecnologias modernas</p>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-4 p-4 bg-preto-950/50 rounded-xl border border-preto-700">
-                  <div className="w-12 h-12 rounded-lg bg-vinho-500/10 flex items-center justify-center">
-                    <Brain className="w-6 h-6 text-vinho-400" aria-hidden="true" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-white">Pensamento Computacional</h4>
-                    <p className="text-neutral-400 text-sm">Lógica, algoritmos e resolução de problemas</p>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-4 p-4 bg-preto-950/50 rounded-xl border border-preto-700">
-                  <div className="w-12 h-12 rounded-lg bg-amber-500/10 flex items-center justify-center">
-                    <Award className="w-6 h-6 text-amber-400" aria-hidden="true" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-white">Medalha de Ouro OBR</h4>
-                    <p className="text-neutral-400 text-sm">Robótica, automação e competição técnica</p>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-4 p-4 bg-preto-950/50 rounded-xl border border-preto-700">
-                  <div className="w-12 h-12 rounded-lg bg-emerald-500/10 flex items-center justify-center">
-                    <FileSpreadsheet className="w-6 h-6 text-emerald-400" aria-hidden="true" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-white">Certificação MOS Excel</h4>
-                    <p className="text-neutral-400 text-sm">Produtividade avançada e análise de dados</p>
-                  </div>
-                </div>
-              </div>
+<Carousel
+                 items={[
+                   { id: 'web', title: 'Desenvolvimento Full-Stack', description: 'Front-end & Back-end com tecnologias modernas.', icon: <Code className="w-6 h-6" /> },
+                   { id: 'logic', title: 'Pensamento Computacional', description: 'Lógica, algoritmos e resolução de problemas.', icon: <Brain className="w-6 h-6" /> },
+                   { id: 'obr', title: 'Medalha de Ouro OBR', description: 'Robótica, automação e competição técnica.', icon: <Award className="w-6 h-6" /> },
+                   { id: 'excel', title: 'Certificação MOS Excel', description: 'Produtividade avançada e análise de dados.', icon: <FileSpreadsheet className="w-6 h-6" /> },
+                 ]}
+                 autoplay
+                 autoplayDelay={4200}
+                 pauseOnHover
+               />
             </div>
           </div>
 

@@ -44,14 +44,6 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     setTheme(theme === 'dark' ? 'light' : 'dark');
   };
 
-  if (!mounted) {
-    return (
-      <div className="min-h-screen bg-preto-975" style={{ visibility: 'hidden' }}>
-        {children}
-      </div>
-    );
-  }
-
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme, setTheme }}>
       {children}

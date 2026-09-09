@@ -1,7 +1,6 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { useTheme } from '../../components/ThemeProvider';
 import { cn } from '../../utils/helpers';
 
 interface LoaderProps {
@@ -11,8 +10,6 @@ interface LoaderProps {
 }
 
 export function Loader({ className, message = 'Preparando sua experiência...', subtitle }: LoaderProps) {
-  const { theme } = useTheme();
-
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -21,7 +18,7 @@ export function Loader({ className, message = 'Preparando sua experiência...', 
       transition={{ duration: 0.3 }}
       className={cn(
         'fixed inset-0 z-[100] flex flex-col items-center justify-center',
-        'bg-preto-975 dark',
+        'bg-preto-975',
         className
       )}
       role="status"

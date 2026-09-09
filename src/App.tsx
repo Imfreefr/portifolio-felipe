@@ -19,13 +19,11 @@ import { ThemeProvider } from './components/ThemeProvider';
 import { Loader } from './components/ui/Loader';
 
 function App() {
-  const [mounted, setMounted] = useState(false);
   const [showLoader, setShowLoader] = useState(true);
   const reducedMotion = useReducedMotion();
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setMounted(true);
       setShowLoader(false);
     }, 800);
     return () => clearTimeout(timer);
@@ -42,11 +40,11 @@ function App() {
         
         <motion.div
           key="app"
-          initial={!mounted ? { opacity: 0 } : false}
+          initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: reducedMotion ? 0 : 0.4 }}
-          className="min-h-screen bg-preto-975 text-neutral-100 antialiased dark"
+          className="min-h-screen bg-preto-975 text-neutral-100 antialiased"
         >
           <Navigation />
           

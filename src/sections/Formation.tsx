@@ -9,8 +9,8 @@ import { cn } from '../utils/helpers';
 const achievementDetails = [
   {
     icon: Award,
-    color: 'from-yellow-500 to-orange-500',
-    glowColor: 'yellow-500',
+    color: 'from-amber-500 to-orange-500',
+    glowColor: 'amber-500',
     tags: ['Tecnologia', 'Robótica', 'Lógica', 'Resolução de problemas', 'Pensamento analítico'],
     highlights: [
       'Competição nacional de alto nível',
@@ -21,8 +21,8 @@ const achievementDetails = [
   },
   {
     icon: FileSpreadsheet,
-    color: 'from-green-500 to-emerald-500',
-    glowColor: 'green-500',
+    color: 'from-emerald-500 to-teal-500',
+    glowColor: 'emerald-500',
     tags: ['Produtividade', 'Análise de dados', 'Automação', 'Modelagem', 'Dashboards'],
     highlights: [
       'Certificação oficial Microsoft (MOS)',
@@ -33,8 +33,8 @@ const achievementDetails = [
   },
   {
     icon: GraduationCap,
-    color: 'from-primary-500 to-blue-500',
-    glowColor: 'primary-500',
+    color: 'from-vinho-500 to-vinho-600',
+    glowColor: 'vinho-500',
     tags: ['Programação', 'Banco de dados', 'Redes', 'Hardware', 'Sistemas operacionais'],
     highlights: [
       'Formação técnica completa em TI',
@@ -90,7 +90,7 @@ export function Formation() {
               }}
               className={cn(
                 'relative overflow-hidden group',
-                'bg-dark-900/80 backdrop-blur-sm border border-dark-700'
+                'bg-preto-900/80 backdrop-blur-sm border border-preto-700'
               )}
               role="listitem"
               whileHover={{ y: reducedMotion ? 0 : -8 }}
@@ -136,7 +136,7 @@ export function Formation() {
                 <h3 className="text-xl font-bold text-white text-center mb-2">
                   {achievement.title}
                 </h3>
-                <p className="text-dark-400 text-sm text-center mb-6">
+                <p className="text-neutral-400 text-sm text-center mb-6">
                   {achievement.subtitle}
                 </p>
 
@@ -149,9 +149,9 @@ export function Formation() {
                       transition={{ duration: reducedMotion ? 0 : 0.3, delay: 0.4 + tagIndex * 0.05 }}
                       className="px-2.5 py-1 rounded-full text-xs font-medium border"
                       style={{
-                        backgroundColor: 'rgba(14, 165, 233, 0.1)',
-                        borderColor: 'rgba(14, 165, 233, 0.2)',
-                        color: '#38bdf8',
+                        backgroundColor: 'rgba(217, 74, 95, 0.1)',
+                        borderColor: 'rgba(217, 74, 95, 0.2)',
+                        color: '#e67280',
                       }}
                       role="listitem"
                     >
@@ -160,8 +160,8 @@ export function Formation() {
                   ))}
                 </div>
 
-                <div className="mt-auto pt-4 border-t border-dark-700/50">
-                  <h4 className="text-xs font-semibold text-dark-500 uppercase tracking-wider mb-3">
+                <div className="mt-auto pt-4 border-t border-preto-700/50">
+                  <h4 className="text-xs font-semibold text-neutral-500 uppercase tracking-wider mb-3">
                     O que isso demonstra na prática
                   </h4>
                   <ul className="space-y-2" role="list">
@@ -171,7 +171,7 @@ export function Formation() {
                         initial={{ opacity: 0, x: -10 }}
                         animate={{ opacity: hasIntersected ? 1 : 0, x: hasIntersected ? 0 : -10 }}
                         transition={{ duration: reducedMotion ? 0 : 0.3, delay: 0.5 + hIndex * 0.08 }}
-                        className="flex items-start gap-2 text-dark-400 text-sm leading-relaxed"
+                        className="flex items-start gap-2 text-neutral-400 text-sm leading-relaxed"
                         role="listitem"
                       >
                         <Sparkles className="w-4 h-4 flex-shrink-0 mt-0.5" style={{ color: detail.color.split(' ')[0].replace('from-', '') }} aria-hidden="true" />
@@ -194,9 +194,9 @@ export function Formation() {
         transition={{ duration: reducedMotion ? 0 : 0.6, delay: 0.7, ease: 'easeOut' }}
         className="mt-16 text-center"
       >
-        <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-dark-900/60 border border-dark-700">
-          <Target className="w-5 h-5 text-primary-500" aria-hidden="true" />
-          <span className="text-dark-300 font-medium">
+        <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-preto-900/60 border border-preto-700">
+          <Target className="w-5 h-5 text-vinho-400" aria-hidden="true" />
+          <span className="text-neutral-300 font-medium">
             Em constante evolução — novas certificações e conquistas em breve
           </span>
         </div>

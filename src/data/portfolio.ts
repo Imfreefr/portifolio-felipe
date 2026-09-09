@@ -14,6 +14,23 @@ export const personalInfo = {
   },
   location: "Brasil",
   email: "",
+  social: {
+    github: {
+      username: "ImFreeFr",
+      url: "https://github.com/ImFreeFr",
+      label: "GitHub"
+    },
+    instagram: {
+      username: "fp_souzx",
+      url: "https://www.instagram.com/fp_souzx/",
+      label: "Instagram"
+    },
+    linkedin: {
+      username: "felipe-souza-nascimento-915615228",
+      url: "https://www.linkedin.com/in/felipe-souza-nascimento-915615228/",
+      label: "LinkedIn"
+    }
+  }
 };
 
 export const aboutText = `Sou um profissional de tecnologia com formação técnica em informática e paixão por desenvolvimento web. Minha trajetória inclui conquistas como a Medalha de Ouro na Olimpíada Brasileira de Robótica (OBR), que reforçou meu pensamento analítico, lógica e capacidade de resolução de problemas complexos. Também possuo certificação MOS como Especialista em Excel, demonstrando domínio em produtividade e análise de dados.
@@ -148,6 +165,72 @@ export const technologies = [
   },
 ];
 
+export const solutionTypes = [
+  {
+    id: "logistica",
+    title: "Sistema de Gerenciamento Logístico",
+    description: "Controle de frotas, rotas, entregas e estoque em tempo real.",
+    icon: "Truck",
+    category: "Logística",
+  },
+  {
+    id: "caixa",
+    title: "Sistema de Caixa (PDV)",
+    description: "Ponto de venda completo com gestão de vendas, produtos e relatórios.",
+    icon: "ShoppingCart",
+    category: "Varejo",
+  },
+  {
+    id: "petshop",
+    title: "Sistema para Petshop",
+    description: "Agendamento, banho/tosa, produtos, clientes e fidelidade.",
+    icon: "PawPrint",
+    category: "Pet",
+  },
+  {
+    id: "doces",
+    title: "Loja de Doces / Confeitaria",
+    description: "Cardápio digital, encomendas, produção e entrega programada.",
+    icon: "Cake",
+    category: "Alimentação",
+  },
+  {
+    id: "landing",
+    title: "Landing Page de Alta Conversão",
+    description: "Páginas focadas em captura de leads e vendas com A/B testing.",
+    icon: "Target",
+    category: "Marketing",
+  },
+  {
+    id: "institucional",
+    title: "Site Institucional Profissional",
+    description: "Apresentação da empresa, serviços, blog, cases e contato.",
+    icon: "Building",
+    category: "Corporativo",
+  },
+  {
+    id: "academia",
+    title: "Sistema para Academia",
+    description: "Gestão de alunos, treinos, pagamentos, acesso e relatórios.",
+    icon: "Dumbbell",
+    category: "Fitness",
+  },
+  {
+    id: "barbearia",
+    title: "Sistema para Barbearia",
+    description: "Agendamento online, fila de espera, fidelidade e gestão de barbeiros.",
+    icon: "Scissors",
+    category: "Beleza",
+  },
+  {
+    id: "personalizado",
+    title: "Sistema Personalizado",
+    description: "Desenvolvimento sob medida para sua necessidade específica.",
+    icon: "Cpu",
+    category: "Custom",
+  },
+];
+
 export const achievements = [
   {
     id: 1,
@@ -203,22 +286,22 @@ export const processSteps = [
     description: "Definição da arquitetura, tecnologias, cronograma e escopo detalhado da solução.",
   },
   {
-    step: 3,
+    step: "03",
     title: "Design",
     description: "Estruturação da experiência do usuário (UX) e criação da interface visual (UI).",
   },
   {
-    step: 4,
+    step: "04",
     title: "Desenvolvimento",
     description: "Construção do projeto com código limpo, testes contínuos e versionamento.",
   },
   {
-    step: 5,
+    step: "05",
     title: "Testes",
     description: "Validação completa: funcionalidade, responsividade, performance, acessibilidade e cross-browser.",
   },
   {
-    step: 6,
+    step: "06",
     title: "Entrega",
     description: "Projeto pronto para uso, com documentação, treinamento se necessário e suporte pós-entrega.",
   },

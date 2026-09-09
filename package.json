@@ -9,6 +9,7 @@
     "lint": "oxlint",
     "preview": "vite preview"
   },
+  "allowScripts": ["shadcn", "@kokonutui/*", "@react-bits/*"],
   "dependencies": {
     "framer-motion": "^13.2.0",
     "lucide-react": "^1.43.0",

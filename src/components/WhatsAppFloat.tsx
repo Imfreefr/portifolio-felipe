@@ -67,16 +67,16 @@ export function WhatsAppFloat({ defaultMessage = 'contato' }: WhatsAppFloatProps
             transition={{ duration: 0.2, ease: 'easeOut' }}
             className="absolute bottom-16 right-0 w-64"
           >
-            <div className="bg-dark-900 border border-dark-700 rounded-xl p-4 shadow-card-hover">
+            <div className="bg-preto-900 border border-preto-700 rounded-xl p-4 shadow-card-hover">
               <p className="text-sm font-medium text-white mb-3">Como posso ajudar?</p>
               <div className="space-y-2">
                 {messages.map(({ key, label }) => (
                   <button
                     key={key}
                     onClick={() => handleMessageClick(key)}
-                    className="w-full text-left px-3 py-2 rounded-lg text-sm text-dark-300 hover:bg-dark-800 hover:text-white transition-colors flex items-center gap-2"
+                    className="w-full text-left px-3 py-2 rounded-lg text-sm text-neutral-300 hover:bg-preto-800 hover:text-white transition-colors flex items-center gap-2"
                   >
-                    <MessageSquare className="w-4 h-4 text-primary-500" aria-hidden="true" />
+                    <MessageSquare className="w-4 h-4 text-emerald-500" aria-hidden="true" />
                     {label}
                   </button>
                 ))}
@@ -86,16 +86,16 @@ export function WhatsAppFloat({ defaultMessage = 'contato' }: WhatsAppFloatProps
         )}
         {isOpen && reducedMotion && (
           <div className="absolute bottom-16 right-0 w-64">
-            <div className="bg-dark-900 border border-dark-700 rounded-xl p-4 shadow-card-hover">
+            <div className="bg-preto-900 border border-preto-700 rounded-xl p-4 shadow-card-hover">
               <p className="text-sm font-medium text-white mb-3">Como posso ajudar?</p>
               <div className="space-y-2">
                 {messages.map(({ key, label }) => (
                   <button
                     key={key}
                     onClick={() => handleMessageClick(key)}
-                    className="w-full text-left px-3 py-2 rounded-lg text-sm text-dark-300 hover:bg-dark-800 hover:text-white transition-colors flex items-center gap-2"
+                    className="w-full text-left px-3 py-2 rounded-lg text-sm text-neutral-300 hover:bg-preto-800 hover:text-white transition-colors flex items-center gap-2"
                   >
-                    <MessageSquare className="w-4 h-4 text-primary-500" aria-hidden="true" />
+                    <MessageSquare className="w-4 h-4 text-emerald-500" aria-hidden="true" />
                     {label}
                   </button>
                 ))}
@@ -109,11 +109,11 @@ export function WhatsAppFloat({ defaultMessage = 'contato' }: WhatsAppFloatProps
         onClick={() => setIsOpen(!isOpen)}
         className={cn(
           'relative flex items-center justify-center w-14 h-14 rounded-full',
-          'bg-green-500 text-white',
-          'shadow-lg shadow-green-500/25',
+          'bg-emerald-500 text-white',
+          'shadow-lg shadow-emerald-500/25',
           'transition-all duration-300',
-          'hover:scale-110 hover:shadow-xl hover:shadow-green-500/40',
-          'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:ring-offset-2 focus-visible:ring-offset-dark-950'
+          'hover:scale-110 hover:shadow-xl hover:shadow-emerald-500/40',
+          'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 focus-visible:ring-offset-preto-975'
         )}
         aria-label={isOpen ? 'Fechar opções do WhatsApp' : 'Abrir WhatsApp'}
         aria-expanded={isOpen}
@@ -146,7 +146,7 @@ export function WhatsAppFloat({ defaultMessage = 'contato' }: WhatsAppFloatProps
 
         {!reducedMotion && (
           <motion.div
-            className="absolute inset-0 rounded-full bg-green-500 opacity-30"
+            className="absolute inset-0 rounded-full bg-emerald-500 opacity-30"
             animate={{ scale: [1, 1.5, 1], opacity: [0.3, 0, 0.3] }}
             transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
             aria-hidden="true"

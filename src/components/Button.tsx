@@ -28,16 +28,16 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       inline-flex items-center justify-center gap-2
       font-medium rounded-lg
       transition-all duration-300 ease-spring
-      focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-dark-950
+      focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2
       disabled:opacity-50 disabled:cursor-not-allowed
       active:scale-[0.98]
     `;
 
     const variantStyles = {
-      primary: 'bg-primary-500 text-white hover:bg-primary-600 hover:shadow-glow',
-      secondary: 'bg-dark-800 text-white border border-dark-600 hover:bg-dark-700 hover:border-dark-500',
-      outline: 'bg-transparent text-white border border-dark-600 hover:bg-dark-800 hover:border-dark-500',
-      ghost: 'bg-transparent text-dark-300 hover:text-white hover:bg-dark-800/50',
+      primary: 'btn-primary',
+      secondary: 'btn-secondary',
+      outline: 'btn-outline',
+      ghost: 'btn-ghost',
     };
 
     const sizeStyles = {

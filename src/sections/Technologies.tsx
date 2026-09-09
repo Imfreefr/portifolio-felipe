@@ -4,6 +4,7 @@ import { technologies } from '../data/portfolio';
 import { TechIcon, getTechColor } from '../components/TechIcon';
 import { useReducedMotion, useIntersectionObserver } from '../hooks/useIntersectionObserver';
 import { cn } from '../utils/helpers';
+import { useMemo } from 'react';
 
 interface TechCardProps {
   tech: typeof technologies[0];
@@ -31,7 +32,7 @@ function TechCard({ tech, index, hasIntersected, reducedMotion }: TechCardProps)
       }}
       className={cn(
         'tech-card group relative z-10',
-        'bg-dark-900/80 backdrop-blur-sm border border-dark-700'
+        'bg-preto-900/80 backdrop-blur-sm border border-preto-700'
       )}
       role="listitem"
       tabIndex={0}
@@ -52,7 +53,7 @@ function TechCard({ tech, index, hasIntersected, reducedMotion }: TechCardProps)
         <h3 className="text-lg font-semibold text-white mb-1 group-hover:text-[${color}] transition-colors">
           {tech.name}
         </h3>
-        <span className="text-xs font-medium px-2.5 py-1 rounded-full bg-dark-800 border border-dark-600 text-dark-400 group-hover:text-[${color}] group-hover:border-[${color}]/50 transition-colors">
+        <span className="text-xs font-medium px-2.5 py-1 rounded-full bg-preto-800 border border-preto-600 text-neutral-400 group-hover:text-[${color}] group-hover:border-[${color}]/50 transition-colors">
           {tech.category}
         </span>
 
@@ -62,7 +63,7 @@ function TechCard({ tech, index, hasIntersected, reducedMotion }: TechCardProps)
             initial={{ opacity: 0, y: 10, height: 0 }}
             animate={{ opacity: 1, y: 0, height: 'auto' }}
             exit={{ opacity: 0, y: -10, height: 0 }}
-            className="mt-4 text-dark-500 text-sm leading-relaxed max-w-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+            className="mt-4 text-neutral-500 text-sm leading-relaxed max-w-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300"
             style={{ display: 'none' }}
           >
             {tech.description}
@@ -75,9 +76,31 @@ function TechCard({ tech, index, hasIntersected, reducedMotion }: TechCardProps)
   );
 }
 
+interface FloatingTech {
+  tech: typeof technologies[0];
+  color: string;
+  delay: number;
+  xPos: number;
+  yPos: number;
+  scale: number;
+  rotOffset: number;
+}
+
 export function Technologies() {
   const reducedMotion = useReducedMotion();
   const { ref, hasIntersected } = useIntersectionObserver({ threshold: 0.1 });
+
+  const floatingTechs = useMemo((): FloatingTech[] => 
+    technologies.map((tech, index) => {
+      const color = getTechColor(tech.name);
+      const delay = index * 0.5;
+      const xPos = (index % 4) * 25 + 5;
+      const yPos = Math.floor(index / 4) * 40 + 10;
+      const scale = 0.7 + (index % 3) * 0.15;
+      const rotOffset = index * 17;
+
+      return { tech, color, delay, xPos, yPos, scale, rotOffset };
+    }), [technologies]);
 
   return (
     <Section
@@ -120,7 +143,7 @@ export function Technologies() {
         aria-hidden={reducedMotion}
       >
         <div className="relative overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-r from-dark-950 via-transparent to-dark-950 pointer-events-none" aria-hidden="true" />
+          <div className="absolute inset-0 bg-gradient-to-r from-preto-950 via-transparent to-preto-950 pointer-events-none" aria-hidden="true" />
           
           <div className="relative" role="img" aria-label="Tecnologias em movimento contínuo">
             <motion.div
@@ -138,7 +161,7 @@ export function Technologies() {
               {technologies.map((tech) => (
                 <motion.div
                   key={tech.id}
-                  className="flex items-center gap-3 px-4 py-2 rounded-xl bg-dark-900/60 border border-dark-700 whitespace-nowrap group"
+                  className="flex items-center gap-3 px-4 py-2 rounded-xl bg-preto-900/60 border border-preto-700 whitespace-nowrap group"
                   whileHover={{
                     scale: reducedMotion ? 1 : 1.05,
                     y: reducedMotion ? 0 : -2,
@@ -153,7 +176,7 @@ export function Technologies() {
               {technologies.map((tech) => (
                 <motion.div
                   key={`${tech.id}-clone`}
-                  className="flex items-center gap-3 px-4 py-2 rounded-xl bg-dark-900/60 border border-dark-700 whitespace-nowrap group"
+                  className="flex items-center gap-3 px-4 py-2 rounded-xl bg-preto-900/60 border border-preto-700 whitespace-nowrap group"
                   whileHover={{
                     scale: reducedMotion ? 1 : 1.05,
                     y: reducedMotion ? 0 : -2,
@@ -178,46 +201,38 @@ export function Technologies() {
           className="mt-16 relative h-64 lg:h-80 overflow-hidden"
           aria-hidden="true"
         >
-          {technologies.map((tech, index) => {
-            const color = getTechColor(tech.name);
-            const delay = index * 0.5;
-            const xPos = (index % 4) * 25 + 5;
-            const yPos = Math.floor(index / 4) * 40 + 10;
-            const scale = 0.7 + (index % 3) * 0.15;
-
-            return (
-              <motion.div
-                key={tech.id}
-                className="absolute"
-                style={{
-                  left: `${xPos}%`,
-                  top: `${yPos}%`,
-                  transform: `scale(${scale})`,
-                }}
-                animate={{
-                  y: [0, -15, 0],
-                  x: [0, 10, 0],
-                  rotate: [0, 3, -3, 0],
-                }}
-                transition={{
-                  duration: 6 + index,
-                  repeat: Infinity,
-                  delay,
-                  ease: 'easeInOut',
-                }}
-              >
-                <div className="flex flex-col items-center gap-2">
-                  <div className="relative">
-                    <div className="absolute inset-0 rounded-xl blur-lg opacity-30" style={{ backgroundColor: color }} />
-                    <TechIcon name={tech.name} size={48} aria-hidden="true" />
-                  </div>
-                  <span className="text-xs font-medium text-dark-500 text-center whitespace-nowrap max-w-[80px]">
-                    {tech.name}
-                  </span>
+          {floatingTechs.map(({ tech, color, delay, xPos, yPos, scale, rotOffset }, i) => (
+            <motion.div
+              key={tech.id}
+              className="absolute"
+              style={{
+                left: `${xPos}%`,
+                top: `${yPos}%`,
+                transform: `scale(${scale})`,
+              }}
+              animate={{
+                y: [0, -15, 0],
+                x: [0, 10, 0],
+                rotate: [0, 3, -3, 0],
+              }}
+              transition={{
+                duration: 6 + i,
+                repeat: Infinity,
+                delay,
+                ease: 'easeInOut',
+              }}
+            >
+              <div className="flex flex-col items-center gap-2">
+                <div className="relative">
+                  <div className="absolute inset-0 rounded-xl blur-lg opacity-30" style={{ backgroundColor: color }} />
+                  <TechIcon name={tech.name} size={48} aria-hidden="true" />
                 </div>
-              </motion.div>
-            );
-          })}
+                <span className="text-xs font-medium text-neutral-500 text-center whitespace-nowrap max-w-[80px]">
+                  {tech.name}
+                </span>
+              </div>
+            </motion.div>
+          ))}
         </motion.div>
       )}
 
@@ -227,7 +242,7 @@ export function Technologies() {
         transition={{ duration: reducedMotion ? 0 : 0.6, delay: 0.6, ease: 'easeOut' }}
         className="mt-12 lg:mt-16 text-center"
       >
-        <p className="text-dark-500 text-sm mb-4">
+        <p className="text-neutral-500 text-sm mb-4">
           Sempre expandindo o stack. Próximas tecnologias no radar:
         </p>
         <div className="flex flex-wrap items-center justify-center gap-3">
@@ -237,7 +252,7 @@ export function Technologies() {
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: hasIntersected ? 1 : 0, scale: hasIntersected ? 1 : 0.8 }}
               transition={{ duration: reducedMotion ? 0 : 0.4, delay: 0.7 + Math.random() * 0.3, ease: 'easeOut' }}
-              className="px-3 py-1 rounded-full bg-dark-800 border border-dark-600 text-xs font-medium text-dark-400 hover:border-primary-500/50 hover:text-primary-400 transition-colors cursor-default"
+              className="px-3 py-1 rounded-full bg-preto-800 border border-preto-600 text-xs font-medium text-neutral-400 hover:border-vinho-500/50 hover:text-vinho-400 transition-colors cursor-default"
             >
               {tech}
             </motion.span>

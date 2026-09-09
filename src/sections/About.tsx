@@ -7,12 +7,12 @@ import { useReducedMotion, useIntersectionObserver } from '../hooks/useIntersect
 import { cn } from '../utils/helpers';
 
 const highlights = [
-  { icon: GraduationCap, title: 'Formação Técnica', desc: 'Curso Técnico em Informática', color: 'text-primary-500' },
-  { icon: Award, title: 'Medalha de Ouro OBR', desc: 'Olimpíada Brasileira de Robótica', color: 'text-yellow-500' },
-  { icon: FileSpreadsheet, title: 'Especialista Excel', desc: 'Certificação MOS Microsoft', color: 'text-green-500' },
-  { icon: Code, title: 'Desenvolvimento Web', desc: 'Sites, sistemas & interfaces', color: 'text-accent-500' },
-  { icon: Brain, title: 'Pensamento Analítico', desc: 'Lógica & resolução de problemas', color: 'text-orange-500' },
-  { icon: Target, title: 'Foco em UX/Qualidade', desc: 'Experiência do usuário & código limpo', color: 'text-pink-500' },
+  { icon: GraduationCap, title: 'Formação Técnica', desc: 'Curso Técnico em Informática', color: 'text-vinho-400', bgColor: 'bg-vinho-500/10' },
+  { icon: Award, title: 'Medalha de Ouro OBR', desc: 'Olimpíada Brasileira de Robótica', color: 'text-amber-400', bgColor: 'bg-amber-500/10' },
+  { icon: FileSpreadsheet, title: 'Especialista Excel', desc: 'Certificação MOS Microsoft', color: 'text-emerald-400', bgColor: 'bg-emerald-500/10' },
+  { icon: Code, title: 'Desenvolvimento Web', desc: 'Sites, sistemas & interfaces', color: 'text-vinho-400', bgColor: 'bg-vinho-500/10' },
+  { icon: Brain, title: 'Pensamento Analítico', desc: 'Lógica & resolução de problemas', color: 'text-orange-400', bgColor: 'bg-orange-500/10' },
+  { icon: Target, title: 'Foco em UX/Qualidade', desc: 'Experiência do usuário & código limpo', color: 'text-rose-400', bgColor: 'bg-rose-500/10' },
 ];
 
 export function About() {
@@ -41,13 +41,13 @@ export function About() {
             transition={{ duration: reducedMotion ? 0 : 0.7, ease: 'easeOut' }}
             className="prose prose-dark max-w-none"
           >
-            <p className="text-dark-300 text-lg leading-relaxed mb-6">
+            <p className="text-neutral-300 text-lg leading-relaxed mb-6">
               {aboutText.split('\n\n')[0]}
             </p>
-            <p className="text-dark-400 leading-relaxed mb-6">
+            <p className="text-neutral-400 leading-relaxed mb-6">
               {aboutText.split('\n\n')[1]}
             </p>
-            <p className="text-dark-400 leading-relaxed">
+            <p className="text-neutral-400 leading-relaxed">
               {aboutText.split('\n\n')[2]}
             </p>
           </motion.div>
@@ -68,15 +68,15 @@ export function About() {
                 transition={{ duration: reducedMotion ? 0 : 0.5, delay: 0.3 + index * 0.08, ease: 'easeOut' }}
                 className={cn(
                   'card-hover group p-4',
-                  'bg-dark-900/60 border-dark-700'
+                  'bg-preto-900/60 border-preto-700'
                 )}
                 role="listitem"
               >
-                <div className={cn('w-10 h-10 rounded-lg flex items-center justify-center mb-3', `${item.color}/20 group-hover:${item.color}/40 transition-colors`)}>
+                <div className={cn('w-10 h-10 rounded-lg flex items-center justify-center mb-3', `${item.bgColor} group-hover:${item.bgColor.replace('500/10', '500/20')} transition-colors`)}>
                   <item.icon className={cn('w-5 h-5', item.color)} aria-hidden="true" />
                 </div>
                 <h4 className="font-semibold text-white text-sm mb-1">{item.title}</h4>
-                <p className="text-dark-400 text-xs">{item.desc}</p>
+                <p className="text-neutral-400 text-xs">{item.desc}</p>
               </motion.article>
             ))}
           </motion.div>
@@ -89,47 +89,47 @@ export function About() {
           className="relative"
         >
           <div className="relative aspect-square max-w-md mx-auto">
-            <div className="absolute inset-0 bg-gradient-to-br from-primary-500/20 via-transparent to-accent-500/20 rounded-3xl blur-2xl" aria-hidden="true" />
+            <div className="absolute inset-0 bg-gradient-to-br from-vinho-500/20 via-transparent to-vinho-600/20 rounded-3xl blur-2xl" aria-hidden="true" />
             
-            <div className="relative bg-dark-900/80 backdrop-blur-sm border border-dark-700 rounded-3xl p-8 h-full">
+            <div className="relative bg-preto-900/80 backdrop-blur-sm border border-preto-700 rounded-3xl p-8 h-full">
               <div className="space-y-6">
-                <div className="flex items-center gap-4 p-4 bg-dark-950/50 rounded-xl border border-dark-700">
-                  <div className="w-12 h-12 rounded-lg bg-primary-500/10 flex items-center justify-center">
-                    <Code className="w-6 h-6 text-primary-500" aria-hidden="true" />
+                <div className="flex items-center gap-4 p-4 bg-preto-950/50 rounded-xl border border-preto-700">
+                  <div className="w-12 h-12 rounded-lg bg-vinho-500/10 flex items-center justify-center">
+                    <Code className="w-6 h-6 text-vinho-400" aria-hidden="true" />
                   </div>
                   <div>
                     <h4 className="font-semibold text-white">Desenvolvimento Full-Stack</h4>
-                    <p className="text-dark-400 text-sm">Front-end & Back-end com tecnologias modernas</p>
+                    <p className="text-neutral-400 text-sm">Front-end & Back-end com tecnologias modernas</p>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-4 p-4 bg-dark-950/50 rounded-xl border border-dark-700">
-                  <div className="w-12 h-12 rounded-lg bg-accent-500/10 flex items-center justify-center">
-                    <Brain className="w-6 h-6 text-accent-500" aria-hidden="true" />
+                <div className="flex items-center gap-4 p-4 bg-preto-950/50 rounded-xl border border-preto-700">
+                  <div className="w-12 h-12 rounded-lg bg-vinho-500/10 flex items-center justify-center">
+                    <Brain className="w-6 h-6 text-vinho-400" aria-hidden="true" />
                   </div>
                   <div>
                     <h4 className="font-semibold text-white">Pensamento Computacional</h4>
-                    <p className="text-dark-400 text-sm">Lógica, algoritmos e resolução de problemas</p>
+                    <p className="text-neutral-400 text-sm">Lógica, algoritmos e resolução de problemas</p>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-4 p-4 bg-dark-950/50 rounded-xl border border-dark-700">
-                  <div className="w-12 h-12 rounded-lg bg-yellow-500/10 flex items-center justify-center">
-                    <Award className="w-6 h-6 text-yellow-500" aria-hidden="true" />
+                <div className="flex items-center gap-4 p-4 bg-preto-950/50 rounded-xl border border-preto-700">
+                  <div className="w-12 h-12 rounded-lg bg-amber-500/10 flex items-center justify-center">
+                    <Award className="w-6 h-6 text-amber-400" aria-hidden="true" />
                   </div>
                   <div>
                     <h4 className="font-semibold text-white">Medalha de Ouro OBR</h4>
-                    <p className="text-dark-400 text-sm">Robótica, automação e competição técnica</p>
+                    <p className="text-neutral-400 text-sm">Robótica, automação e competição técnica</p>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-4 p-4 bg-dark-950/50 rounded-xl border border-dark-700">
-                  <div className="w-12 h-12 rounded-lg bg-green-500/10 flex items-center justify-center">
-                    <FileSpreadsheet className="w-6 h-6 text-green-500" aria-hidden="true" />
+                <div className="flex items-center gap-4 p-4 bg-preto-950/50 rounded-xl border border-preto-700">
+                  <div className="w-12 h-12 rounded-lg bg-emerald-500/10 flex items-center justify-center">
+                    <FileSpreadsheet className="w-6 h-6 text-emerald-400" aria-hidden="true" />
                   </div>
                   <div>
                     <h4 className="font-semibold text-white">Certificação MOS Excel</h4>
-                    <p className="text-dark-400 text-sm">Produtividade avançada e análise de dados</p>
+                    <p className="text-neutral-400 text-sm">Produtividade avançada e análise de dados</p>
                   </div>
                 </div>
               </div>
@@ -138,8 +138,8 @@ export function About() {
 
           {!reducedMotion && (
             <>
-              <div className="absolute -top-4 -right-4 w-24 h-24 border-2 border-primary-500/30 rounded-full animate-pulse" aria-hidden="true" />
-              <div className="absolute bottom-4 -left-4 w-16 h-16 border-2 border-accent-500/30 rounded-full animate-pulse" style={{ animationDelay: '1s' }} aria-hidden="true" />
+              <div className="absolute -top-4 -right-4 w-24 h-24 border-2 border-vinho-500/30 rounded-full animate-pulse" aria-hidden="true" />
+              <div className="absolute bottom-4 -left-4 w-16 h-16 border-2 border-vinho-600/30 rounded-full animate-pulse" style={{ animationDelay: '1s' }} aria-hidden="true" />
             </>
           )}
         </motion.div>

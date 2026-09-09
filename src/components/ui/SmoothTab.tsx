@@ -1,4 +1,4 @@
-import { useLayoutEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import type { LucideIcon } from 'lucide-react';
 import './SmoothTab.css';
@@ -22,27 +22,7 @@ interface SmoothTabProps {
 export default function SmoothTab({ items, defaultTabId, className = '', onChange }: SmoothTabProps) {
   const [selected, setSelected] = useState(defaultTabId ?? items[0]?.id ?? '');
   const [direction, setDirection] = useState(0);
-  const [, setDimensoes] = useState({ width: 0, left: 0 });
-  const containerRef = useRef<HTMLDivElement>(null);
-  const buttonRefs = useRef(new Map<string, HTMLButtonElement>());
   const selectedItem = items.find((item) => item.id === selected) ?? items[0];
-
-  useLayoutEffect(() => {
-    const update = () => {
-      const button = buttonRefs.current.get(selected);
-      const container = containerRef.current;
-      if (!button || !container) return;
-      const buttonRect = button.getBoundingClientRect();
-      const containerRect = container.getBoundingClientRect();
-      setDimensoes({ width: buttonRect.width, left: buttonRect.left - containerRect.left });
-    };
-    const frame = requestAnimationFrame(update);
-    window.addEventListener('resize', update);
-    return () => {
-      cancelAnimationFrame(frame);
-      window.removeEventListener('resize', update);
-    };
-  }, [selected, items.length]);
 
   const selectTab = (id: string) => {
     const current = items.findIndex((item) => item.id === selected);
@@ -85,16 +65,12 @@ export default function SmoothTab({ items, defaultTabId, className = '', onChang
         </AnimatePresence>
       </div>
 
-      <div ref={containerRef} className="smooth-tab-list" role="tablist" aria-label="Categorias de projetos">
+      <div className="smooth-tab-list" role="tablist" aria-label="Categorias de projetos">
         {items.map((item) => {
           const active = item.id === selected;
           return (
             <button
               key={item.id}
-              ref={(element) => {
-                if (element) buttonRefs.current.set(item.id, element);
-                else buttonRefs.current.delete(item.id);
-              }}
               type="button"
               role="tab"
               aria-selected={active}

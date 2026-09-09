@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion';
 import { Award, FileSpreadsheet, GraduationCap, Target, Brain, Sparkles } from 'lucide-react';
 import { Section, SectionHeader } from '../components/Section';
-import { Card } from '../components/Card';
 import { achievements } from '../data/portfolio';
 import { useReducedMotion, useIntersectionObserver } from '../hooks/useIntersectionObserver';
 import { cn } from '../utils/helpers';

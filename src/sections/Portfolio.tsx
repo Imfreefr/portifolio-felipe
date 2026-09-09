@@ -1,20 +1,19 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { FolderOpen, Plus, ArrowRight, Code2, Database, Globe, Layers } from 'lucide-react';
+import { FolderOpen, ArrowRight, Code2, Database, Globe, Layers } from 'lucide-react';
 import { Section, SectionHeader } from '../components/Section';
 import { Button } from '../components/Button';
 import { BentoGrid } from '../components/ui/BentoGrid';
 import SmoothTab from '../components/ui/SmoothTab';
 import { getWhatsAppUrl } from '../utils/helpers';
-import { personalInfo, recursosVisuais, type Project } from '../data/portfolio';
+import { personalInfo, recursosVisuais, type Projeto } from '../data/portfolio';
 import { useReducedMotion, useIntersectionObserver } from '../hooks/useIntersectionObserver';
-import { cn } from '../utils/helpers';
 
 interface PortfolioProps {
   onCtaClick?: () => void;
 }
 
-const projetosDestaque: Project[] = [
+const projetosDestaque: Projeto[] = [
   {
     title: 'Sistemas Web sob medida',
     description: 'Dashboards, painéis administrativos e aplicações preparadas para crescer com o negócio.',

@@ -10,7 +10,6 @@ import {
   Cpu,
 } from 'lucide-react';
 import { Section, SectionHeader } from '../components/Section';
-import { Card } from '../components/Card';
 import { services } from '../data/portfolio';
 import { useReducedMotion, useIntersectionObserver } from '../hooks/useIntersectionObserver';
 import { cn } from '../utils/helpers';

@@ -39,7 +39,7 @@ Atuo como Web Designer e Web Developer, criando soluções digitais que unem des
 
 Utilizo tecnologias modernas como HTML, CSS, JavaScript, PHP, Laravel e MySQL para construir projetos robustos, escaláveis e performáticos. Cada projeto é pensado sob medida, com atenção aos detalhes, responsividade e boas práticas de desenvolvimento.`;
 
-export interface Project {
+export interface Projeto {
   title: string;
   description: string;
   image: string;

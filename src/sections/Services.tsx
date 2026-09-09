@@ -1,0 +1,138 @@
+import { motion } from 'framer-motion';
+import {
+  Globe,
+  Target,
+  Building,
+  Database,
+  Layout,
+  Server,
+  Palette,
+  Cpu,
+} from 'lucide-react';
+import { Section, SectionHeader } from '../components/Section';
+import { Card } from '../components/Card';
+import { services } from '../data/portfolio';
+import { useReducedMotion, useIntersectionObserver } from '../hooks/useIntersectionObserver';
+import { cn } from '../utils/helpers';
+
+const serviceIcons: Record<string, React.ComponentType<{ className?: string }>> = {
+  Globe,
+  Target,
+  Building,
+  Database,
+  Layout,
+  Server,
+  Palette,
+  Cpu,
+};
+
+export function Services() {
+  const reducedMotion = useReducedMotion();
+  const { ref, hasIntersected } = useIntersectionObserver({ threshold: 0.1 });
+
+  return (
+    <Section
+      ref={ref}
+      id="servicos"
+      size="lg"
+      background="grid"
+      aria-labelledby="services-title"
+    >
+      <SectionHeader
+        title="Serviços"
+        subtitle="Soluções digitais completas para transformar sua presença online e impulsionar seu negócio."
+        align="center"
+      />
+
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: hasIntersected ? 1 : 0 }}
+        transition={{ duration: reducedMotion ? 0 : 0.5 }}
+        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
+        role="list"
+        aria-label="Lista de serviços oferecidos"
+      >
+        {services.map((service, index) => {
+          const Icon = serviceIcons[service.icon] || Globe;
+
+          return (
+            <motion.article
+              key={service.id}
+              initial={{ opacity: 0, y: 30, scale: 0.95 }}
+              animate={{ opacity: hasIntersected ? 1 : 0, y: hasIntersected ? 0 : 30, scale: hasIntersected ? 1 : 0.95 }}
+              transition={{
+                duration: reducedMotion ? 0 : 0.6,
+                delay: reducedMotion ? 0 : 0.1 + index * 0.08,
+                ease: 'easeOut',
+              }}
+              className={cn(
+                'card-hover group relative overflow-hidden',
+                'bg-dark-900/80 border-dark-700'
+              )}
+              role="listitem"
+              whileHover={{ y: reducedMotion ? 0 : -4 }}
+            >
+              <div className="absolute inset-0 bg-gradient-to-br from-primary-500/5 via-transparent to-accent-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" aria-hidden="true" />
+              
+              <div className="relative z-10 space-y-4">
+                <div className="w-12 h-12 rounded-xl bg-primary-500/10 group-hover:bg-primary-500/20 transition-colors flex items-center justify-center">
+                  <Icon className="w-6 h-6 text-primary-500 group-hover:scale-110 transition-transform duration-300" aria-hidden="true" />
+                </div>
+
+                <div>
+                  <span className="inline-block px-3 py-1 rounded-full bg-dark-800 border border-dark-600 text-xs font-medium text-primary-400 mb-2">
+                    {service.category}
+                  </span>
+                  <h3 className="text-xl font-semibold text-white group-hover:text-primary-400 transition-colors">
+                    {service.title}
+                  </h3>
+                </div>
+
+                <p className="text-dark-400 leading-relaxed">
+                  {service.description}
+                </p>
+
+                <div className="pt-2 border-t border-dark-700/50 flex items-center gap-2 text-primary-500 font-medium text-sm group-hover:gap-3 transition-all">
+                  <span>Saiba mais</span>
+                  <motion.span
+                    animate={{ x: reducedMotion ? 0 : [0, 4, 0] }}
+                    transition={{ duration: 1.5, repeat: Infinity }}
+                    aria-hidden="true"
+                  >
+                    →
+                  </motion.span>
+                </div>
+              </div>
+            </motion.article>
+          );
+        })}
+      </motion.div>
+
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: hasIntersected ? 1 : 0, y: hasIntersected ? 0 : 20 }}
+        transition={{ duration: reducedMotion ? 0 : 0.6, delay: 0.5, ease: 'easeOut' }}
+        className="mt-16 text-center"
+      >
+        <p className="text-dark-400 mb-4">Precisa de algo personalizado?</p>
+        <a
+          href="#contato"
+          className="inline-flex items-center gap-2 text-primary-500 hover:text-primary-400 font-medium transition-colors"
+          onClick={(e) => {
+            e.preventDefault();
+            document.getElementById('contato')?.scrollIntoView({ behavior: 'smooth' });
+          }}
+        >
+          Vamos conversar sobre seu projeto
+          <motion.span
+            animate={{ x: reducedMotion ? 0 : [0, 4, 0] }}
+            transition={{ duration: 1.5, repeat: Infinity }}
+            aria-hidden="true"
+          >
+            →
+          </motion.span>
+        </a>
+      </motion.div>
+    </Section>
+  );
+}

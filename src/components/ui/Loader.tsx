@@ -34,7 +34,11 @@ export function Loader({ className, message = 'Preparando sua experiência...', 
           transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
           className="w-20 h-20 rounded-2xl bg-gradient-to-br from-vinho-500 to-vinho-600 flex items-center justify-center"
         >
-          <span className="text-white font-bold text-2xl">Noctra</span>
+          <img
+            src="/imgs/noctra-simbolo-branco-transparente.png"
+            alt="Noctra"
+            className="w-10 h-10"
+          />
         </motion.div>
 
         <motion.div

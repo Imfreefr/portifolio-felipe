@@ -14,6 +14,7 @@ import { Card } from '../components/Card';
 import { services } from '../data/portfolio';
 import { useReducedMotion, useIntersectionObserver } from '../hooks/useIntersectionObserver';
 import { cn } from '../utils/helpers';
+import { visualAssets } from '../data/portfolio';
 
 const serviceIcons: Record<string, React.ComponentType<{ className?: string }>> = {
   Globe,
@@ -66,15 +67,23 @@ export function Services() {
                 ease: 'easeOut',
               }}
               className={cn(
-                'card-hover group relative overflow-hidden',
+                'card-hover group p-6 relative overflow-hidden',
                 'bg-preto-900/80 border-preto-700'
               )}
               role="listitem"
               whileHover={{ y: reducedMotion ? 0 : -4 }}
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-vinho-500/5 via-transparent to-vinho-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" aria-hidden="true" />
-              
-              <div className="relative z-10 space-y-4">
+              <img
+                src={visualAssets.services[0]}
+                alt="Interface digital abstrata representando soluções web"
+                width="1200"
+                height="800"
+                loading="lazy"
+                decoding="async"
+                className="absolute inset-x-0 top-0 h-32 w-full object-cover opacity-25 transition-opacity duration-500 group-hover:opacity-40"
+              />
+              <div className="absolute inset-0 bg-gradient-to-b from-preto-900/20 via-preto-900/80 to-preto-900/95" aria-hidden="true" />
+              <div className="relative z-10 space-y-4 pt-24">
                 <div className="w-12 h-12 rounded-xl bg-vinho-500/10 group-hover:bg-vinho-500/20 transition-colors flex items-center justify-center">
                   <Icon className="w-6 h-6 text-vinho-400 group-hover:scale-110 transition-transform duration-300" aria-hidden="true" />
                 </div>

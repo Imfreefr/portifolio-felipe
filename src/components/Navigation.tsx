@@ -5,7 +5,6 @@ import { useActiveSection, useReducedMotion, useMediaQuery } from '../hooks/useI
 import { scrollToSection } from '../utils/helpers';
 import { cn } from '../utils/helpers';
 import { Button } from './Button';
-import { SwitchButton } from './ui/SwitchButton';
 
 const navItems = [
   { id: 'sobre', label: 'Sobre' },
@@ -75,7 +74,6 @@ export function Navigation() {
               alt="Noctra" 
               className="w-7 h-7"
             />
-            <span className="hidden sm:block">Felipe Souza Nascimento</span>
           </motion.a>
 
           <div className={cn('hidden lg:flex items-center gap-8', isMobile ? 'absolute top-full left-0 right-0 bg-preto-950/95 backdrop-blur-md border-b border-preto-800 py-6 px-6 flex-col gap-4' : '')}>
@@ -107,7 +105,6 @@ export function Navigation() {
             ))}
 
             <div className="flex items-center gap-3 pt-2 lg:pt-0">
-              <SwitchButton size="sm" />
               <Button
                 variant="outline"
                 size="sm"
@@ -127,7 +124,6 @@ export function Navigation() {
           </div>
 
           <div className="flex items-center gap-3 lg:hidden">
-            <SwitchButton size="sm" />
             <Button
               variant="primary"
               size="sm"

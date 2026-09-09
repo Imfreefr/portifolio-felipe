@@ -136,7 +136,7 @@ export function Contact() {
           animate={{ opacity: hasIntersected ? 1 : 0, x: hasIntersected ? 0 : 40 }}
           transition={{ duration: reducedMotion ? 0 : 0.7, delay: 0.2, ease: 'easeOut' }}
         >
-          <div className="relative aspect-square max-w-lg mx-auto">
+          <div className="relative max-w-lg mx-auto">
             <div className="absolute inset-0 bg-gradient-to-br from-vinho-500/20 via-transparent to-vinho-600/20 rounded-3xl blur-2xl" aria-hidden="true" />
             
             <div className="relative bg-preto-900/80 backdrop-blur-sm border border-preto-700 rounded-3xl p-8 h-full">

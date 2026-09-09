@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Navigation } from './components/Navigation';
+import Dock from './components/ui/Dock';
 import { Hero } from './sections/Hero';
 import { About } from './sections/About';
 import { Services } from './sections/Services';
@@ -17,6 +17,28 @@ import { WhatsAppFloat } from './components/WhatsAppFloat';
 import { useReducedMotion } from './hooks/useIntersectionObserver';
 import { ThemeProvider } from './components/ThemeProvider';
 import { Loader } from './components/ui/Loader';
+import { scrollToSection } from './utils/helpers';
+import {
+  User,
+  Briefcase,
+  Cpu,
+  Award,
+  GraduationCap,
+  GitBranch,
+  Mail,
+  Lightbulb,
+} from 'lucide-react';
+
+const dockItems = [
+  { icon: <User size={18} />, label: 'Sobre', onClick: () => scrollToSection('sobre') },
+  { icon: <Briefcase size={18} />, label: 'Serviços', onClick: () => scrollToSection('servicos') },
+  { icon: <Cpu size={18} />, label: 'Tecnologias', onClick: () => scrollToSection('tecnologias') },
+  { icon: <Award size={18} />, label: 'Diferenciais', onClick: () => scrollToSection('diferenciais') },
+  { icon: <GraduationCap size={18} />, label: 'Formação', onClick: () => scrollToSection('formacao') },
+  { icon: <GitBranch size={18} />, label: 'Processo', onClick: () => scrollToSection('processo') },
+  { icon: <Mail size={18} />, label: 'Contato', onClick: () => scrollToSection('contato') },
+  { icon: <Lightbulb size={18} />, label: 'Soluções', onClick: () => scrollToSection('solucoes') },
+];
 
 function App() {
   const [showLoader, setShowLoader] = useState(true);
@@ -46,9 +68,7 @@ function App() {
           transition={{ duration: reducedMotion ? 0 : 0.4 }}
           className="min-h-screen bg-preto-975 text-neutral-100 antialiased"
         >
-          <Navigation />
-          
-          <main id="main-content" className="pt-16 lg:pt-20">
+          <main id="main-content" className="pb-24">
             <Hero onScrollToWork={scrollToWork} />
             <About />
             <Services />
@@ -64,6 +84,12 @@ function App() {
 
           <Footer />
           <WhatsAppFloat />
+
+          <div className="fixed bottom-0 left-0 right-0 z-50 pointer-events-none">
+            <div className="pointer-events-auto flex justify-center">
+              <Dock items={dockItems} />
+            </div>
+          </div>
         </motion.div>
       </AnimatePresence>
     </ThemeProvider>

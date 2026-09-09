@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { ArrowRight, MousePointer } from 'lucide-react';
 import { Button } from '../components/Button';
-import { FlowField } from '../components/FlowField';
+import LiquidChrome from '../components/ui/LiquidChrome';
 import { getWhatsAppUrl } from '../utils/helpers';
 import { personalInfo } from '../data/portfolio';
 import { useReducedMotion } from '../hooks/useIntersectionObserver';
@@ -28,10 +28,18 @@ export function Hero({ onScrollToWork }: HeroProps) {
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
       aria-labelledby="hero-title"
     >
-      <FlowField color="vinho" intensity={0.8} />
-      
-      <div className="absolute inset-0 bg-[var(--background-image-radial-glow)]" aria-hidden="true" />
-      <div className="absolute inset-0 bg-[var(--background-image-grid-pattern)] bg-[var(--background-size-grid)] opacity-20" aria-hidden="true" />
+      <div className="absolute inset-0" aria-hidden="true">
+        <LiquidChrome
+          baseColor={[0.2235294117647059, 0.03137254901960784, 0.06274509803921569]}
+          speed={1}
+          amplitude={0.6}
+          interactive={false}
+        />
+      </div>
+      <div
+        className="absolute inset-0 bg-gradient-to-b from-preto-975/80 via-preto-975/50 to-preto-975/70 pointer-events-none"
+        aria-hidden="true"
+      />
 
       {!reducedMotion && (
         <>

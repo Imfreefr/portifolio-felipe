@@ -2,11 +2,31 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronDown, ChevronUp, Check } from 'lucide-react';
+import { ChevronDown, ChevronUp, Check, Truck, ShoppingCart, PawPrint, Cake, Target, Building, Dumbbell, Scissors, Cpu } from 'lucide-react';
 import { cn } from '../../utils/helpers';
 import { solutionTypes } from '../../data/portfolio';
 import { getWhatsAppUrl } from '../../utils/helpers';
 import { personalInfo } from '../../data/portfolio';
+
+const solutionIcons: Record<string, React.ComponentType<{ className?: string }>> = {
+  Truck,
+  ShoppingCart,
+  PawPrint,
+  Cake,
+  Target,
+  Building,
+  Dumbbell,
+  Scissors,
+  Cpu,
+};
+
+function OptionIcon({ icon }: { icon: React.ReactNode }) {
+  if (typeof icon === 'string') {
+    const Icon = solutionIcons[icon];
+    return Icon ? <Icon className="w-5 h-5 text-vinho-400" aria-hidden="true" /> : <>{icon}</>;
+  }
+  return <>{icon}</>;
+}
 
 interface OptionWheelOption {
   id: string;
@@ -103,7 +123,7 @@ export function OptionWheel({
   }, []);
 
   return (
-    <div className={cn('relative inline-block w-full max-w-md', className)}>
+    <div className={cn('relative block w-full max-w-md mx-auto', className)}>
       <motion.button
         ref={triggerRef}
         onClick={handleToggle}
@@ -197,7 +217,7 @@ export function OptionWheel({
                 >
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 rounded-lg bg-vinho-500/10 flex items-center justify-center flex-shrink-0">
-                      {option.icon}
+                      <OptionIcon icon={option.icon} />
                     </div>
                     <div className="flex-1 min-w-0 text-left">
                       <span className="font-medium text-white block truncate">{option.title}</span>
@@ -221,7 +241,7 @@ export function OptionWheel({
         >
           <div className="flex items-start gap-3">
             <div className="w-10 h-10 rounded-lg bg-vinho-500/20 flex items-center justify-center flex-shrink-0">
-              {selectedOption.icon}
+              <OptionIcon icon={selectedOption.icon} />
             </div>
             <div>
               <h4 className="font-semibold text-white">{selectedOption.title}</h4>

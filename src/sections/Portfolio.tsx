@@ -3,13 +3,23 @@ import { FolderOpen, Plus, ArrowRight, Code2, Database, Globe, Layers } from 'lu
 import { Section, SectionHeader } from '../components/Section';
 import { Button } from '../components/Button';
 import { getWhatsAppUrl } from '../utils/helpers';
-import { personalInfo } from '../data/portfolio';
+import { personalInfo, visualAssets, type Project } from '../data/portfolio';
 import { useReducedMotion, useIntersectionObserver } from '../hooks/useIntersectionObserver';
 import { cn } from '../utils/helpers';
 
 interface PortfolioProps {
   onCtaClick?: () => void;
 }
+
+const showcaseProjects: Project[] = [
+  {
+    title: 'Sistemas Web sob medida',
+    description: 'Dashboards, painéis administrativos e aplicações preparadas para crescer com o negócio.',
+    image: visualAssets.portfolio[0],
+    technologies: ['React', 'TypeScript', 'APIs'],
+    category: 'Full-stack',
+  },
+];
 
 const placeholderProjects = [
   { icon: Globe, title: 'Sites Institucionais', desc: 'Empresas, profissionais liberais, ONGs' },
@@ -52,6 +62,15 @@ export function Portfolio({ onCtaClick }: PortfolioProps) {
       >
         <div className="relative">
           <div className="aspect-video bg-preto-900/60 backdrop-blur-sm border border-preto-700 rounded-2xl relative overflow-hidden group">
+            <img
+              src={showcaseProjects[0].image}
+              alt="Preview abstrata de um sistema web"
+              width="1200"
+              height="800"
+              loading="lazy"
+              decoding="async"
+              className="absolute inset-0 h-full w-full object-cover opacity-20 transition-opacity duration-500 group-hover:opacity-30"
+            />
             <div className="absolute inset-0 bg-gradient-to-br from-vinho-500/10 via-transparent to-vinho-600/10" aria-hidden="true" />
             
             <div className="relative z-10 flex flex-col items-center justify-center h-full p-12 text-center">
@@ -152,20 +171,6 @@ export function Portfolio({ onCtaClick }: PortfolioProps) {
             ))}
           </motion.div>
         </div>
-      </motion.div>
-
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: hasIntersected ? 1 : 0 }}
-        transition={{ duration: reducedMotion ? 0 : 0.5, delay: 1 }}
-        className="mt-16 text-center"
-      >
-        <p className="text-neutral-500 text-sm">
-          Desenvolvedor? A estrutura de dados para projetos está em
-          <code className="text-vinho-400 bg-preto-800 px-1.5 py-0.5 rounded text-xs font-mono">
-            src/data/portfolio.ts
-          </code>
-        </p>
       </motion.div>
     </Section>
   );

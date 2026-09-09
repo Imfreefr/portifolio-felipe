@@ -5,6 +5,7 @@ import { Card } from '../components/Card';
 import { aboutText } from '../data/portfolio';
 import { useReducedMotion, useIntersectionObserver } from '../hooks/useIntersectionObserver';
 import { cn } from '../utils/helpers';
+import { visualAssets } from '../data/portfolio';
 
 const highlights = [
   { icon: GraduationCap, title: 'Formação Técnica', desc: 'Curso Técnico em Informática', color: 'text-vinho-400', bgColor: 'bg-vinho-500/10' },
@@ -88,11 +89,20 @@ export function About() {
           transition={{ duration: reducedMotion ? 0 : 0.7, ease: 'easeOut' }}
           className="relative"
         >
-          <div className="relative aspect-square max-w-md mx-auto">
+          <div className="relative max-w-md mx-auto">
             <div className="absolute inset-0 bg-gradient-to-br from-vinho-500/20 via-transparent to-vinho-600/20 rounded-3xl blur-2xl" aria-hidden="true" />
             
-            <div className="relative bg-preto-900/80 backdrop-blur-sm border border-preto-700 rounded-3xl p-8 h-full">
-              <div className="space-y-6">
+<div className="relative bg-preto-900/80 backdrop-blur-sm border border-preto-700 rounded-3xl p-4 sm:p-6 h-full overflow-hidden">
+               <img
+                 src={visualAssets.about[0]}
+                 alt="Composição visual de um workspace de desenvolvimento web"
+                 width="1200"
+                 height="800"
+                 loading="lazy"
+                 decoding="async"
+                 className="w-full aspect-[3/2] object-cover rounded-2xl border border-preto-700/70 mb-6"
+               />
+               <div className="space-y-6">
                 <div className="flex items-center gap-4 p-4 bg-preto-950/50 rounded-xl border border-preto-700">
                   <div className="w-12 h-12 rounded-lg bg-vinho-500/10 flex items-center justify-center">
                     <Code className="w-6 h-6 text-vinho-400" aria-hidden="true" />

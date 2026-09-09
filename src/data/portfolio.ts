@@ -54,6 +54,9 @@ export const visualAssets = {
   about: ['/images/about/developer-workspace.svg'],
   services: ['/images/services/digital-interface.svg'],
   portfolio: ['/images/portfolio/web-system.svg'],
+  solutions: ['/images/solutions/digital-solutions.svg'],
+  formation: ['/images/formation/technology-education.svg'],
+  contact: ['/images/contact/communication.svg'],
 };
 
 export const services = [

@@ -3,7 +3,7 @@ import { MessageSquare, MapPin, Clock, ArrowRight, Send } from 'lucide-react';
 import { Section, SectionHeader } from '../components/Section';
 import { Button } from '../components/Button';
 import { getWhatsAppUrl } from '../utils/helpers';
-import { contactInfo, personalInfo } from '../data/portfolio';
+import { contactInfo, personalInfo, visualAssets } from '../data/portfolio';
 import { useReducedMotion, useIntersectionObserver } from '../hooks/useIntersectionObserver';
 import { useMemo } from 'react';
 
@@ -56,6 +56,15 @@ export function Contact() {
           className="space-y-8"
         >
           <div className="bg-preto-900/60 backdrop-blur-sm border border-preto-700 rounded-2xl p-8 lg:p-10">
+            <img
+              src={visualAssets.contact[0]}
+              alt="Composição abstrata sobre comunicação digital"
+              width="1200"
+              height="800"
+              loading="lazy"
+              decoding="async"
+              className="w-full h-32 object-cover rounded-xl mb-8 opacity-50"
+            />
             <h3 className="text-2xl lg:text-3xl font-bold text-white mb-2">
               {contactInfo.name}
             </h3>

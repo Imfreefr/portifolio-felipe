@@ -5,6 +5,7 @@ import { Card } from '../components/Card';
 import { achievements } from '../data/portfolio';
 import { useReducedMotion, useIntersectionObserver } from '../hooks/useIntersectionObserver';
 import { cn } from '../utils/helpers';
+import { visualAssets } from '../data/portfolio';
 
 const achievementDetails = [
   {
@@ -62,6 +63,18 @@ export function Formation() {
         subtitle="Minhas credenciais e o que elas representam na prática."
         align="center"
       />
+
+      <div className="max-w-4xl mx-auto mb-10 overflow-hidden rounded-3xl border border-preto-700 bg-preto-900/50">
+        <img
+          src={visualAssets.formation[0]}
+          alt="Composição visual sobre formação em tecnologia e robótica"
+          width="1200"
+          height="800"
+          loading="lazy"
+          decoding="async"
+          className="h-40 sm:h-52 w-full object-cover opacity-55"
+        />
+      </div>
 
       <motion.div
         initial={{ opacity: 0 }}

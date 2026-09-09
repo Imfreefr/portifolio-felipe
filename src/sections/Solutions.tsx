@@ -3,7 +3,7 @@ import { Section, SectionHeader } from '../components/Section';
 import { OptionWheel } from '../components/ui/OptionWheel';
 import { solutionTypes } from '../data/portfolio';
 import { useReducedMotion, useIntersectionObserver } from '../hooks/useIntersectionObserver';
-import { cn } from '../utils/helpers';
+import { assetPath, cn } from '../utils/helpers';
 import { recursosVisuais } from '../data/portfolio';
 
 export function Solutions() {
@@ -26,7 +26,7 @@ export function Solutions() {
 
       <div className="max-w-4xl mx-auto mb-10 overflow-hidden rounded-3xl border border-preto-700 bg-preto-900/50">
         <img
-          src={recursosVisuais.solutions[0]}
+          src={assetPath(recursosVisuais.solutions[0])}
           alt="Composição visual de soluções digitais conectadas"
           width="1200"
           height="800"

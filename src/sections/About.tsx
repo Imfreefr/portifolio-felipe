@@ -3,7 +3,7 @@ import { Award, FileSpreadsheet, GraduationCap, Code, Brain, Target } from 'luci
 import { Section, SectionHeader } from '../components/Section';
 import { aboutText } from '../data/portfolio';
 import { useReducedMotion, useIntersectionObserver } from '../hooks/useIntersectionObserver';
-import { cn } from '../utils/helpers';
+import { assetPath, cn } from '../utils/helpers';
 import { recursosVisuais } from '../data/portfolio';
 import Carousel from '../components/ui/Carousel';
 
@@ -94,7 +94,7 @@ export function About() {
             
 <div className="relative bg-preto-900/80 backdrop-blur-sm border border-preto-700 rounded-3xl p-4 sm:p-6 h-full overflow-hidden">
                <img
-                 src={recursosVisuais.about[0]}
+                 src={assetPath(recursosVisuais.about[0])}
                  alt="Composição visual de um workspace de desenvolvimento web"
                  width="1200"
                  height="800"

@@ -18,7 +18,7 @@ import { WhatsAppFloat } from './components/WhatsAppFloat';
 import { useReducedMotion } from './hooks/useIntersectionObserver';
 import { ThemeProvider } from './components/ThemeProvider';
 import { Loader } from './components/ui/Loader';
-import { scrollToSection } from './utils/helpers';
+import { assetPath, scrollToSection } from './utils/helpers';
 import {
   User,
   Briefcase,
@@ -112,7 +112,7 @@ function App() {
               displayItemNumbering
               colors={['#3d1224', '#7a2c42']}
               accentColor="#d94a5f"
-              logoUrl="/imgs/noctra-simbolo-branco-transparente.png"
+              logoUrl={assetPath('/imgs/noctra-simbolo-branco-transparente.png')}
             />
           </div>
         </motion.div>

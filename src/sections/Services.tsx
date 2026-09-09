@@ -12,7 +12,7 @@ import {
 import { Section, SectionHeader } from '../components/Section';
 import { services } from '../data/portfolio';
 import { useReducedMotion, useIntersectionObserver } from '../hooks/useIntersectionObserver';
-import { cn } from '../utils/helpers';
+import { assetPath, cn } from '../utils/helpers';
 import { recursosVisuais } from '../data/portfolio';
 
 const serviceIcons: Record<string, React.ComponentType<{ className?: string }>> = {
@@ -73,7 +73,7 @@ export function Services() {
               whileHover={{ y: reducedMotion ? 0 : -4 }}
             >
               <img
-                src={recursosVisuais.services[0]}
+                src={assetPath(recursosVisuais.services[0])}
                 alt="Interface digital abstrata representando soluções web"
                 width="1200"
                 height="800"

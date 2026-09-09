@@ -1,5 +1,6 @@
 import { useCallback, useLayoutEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
+import { assetPath } from '../../utils/helpers';
 import './StaggeredMenu.css';
 
 interface MenuItem { label: string; ariaLabel: string; link: string; }
@@ -23,7 +24,7 @@ interface StaggeredMenuProps {
 
 export default function StaggeredMenu({
   position = 'right', colors = ['#5227FF', '#d94a5f'], items, socialItems = [],
-  displaySocials = true, displayItemNumbering = true, logoUrl = '/imgs/noctra-simbolo-branco-transparente.png',
+  displaySocials = true, displayItemNumbering = true, logoUrl = assetPath('/imgs/noctra-simbolo-branco-transparente.png'),
   accentColor = '#d94a5f', menuButtonColor = '#fff', openMenuButtonColor = '#fff',
   changeMenuColorOnOpen = true, closeOnClickAway = true, onMenuOpen, onMenuClose,
 }: StaggeredMenuProps) {

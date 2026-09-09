@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { MessageSquare, MapPin, Clock, ArrowRight, Send } from 'lucide-react';
 import { Section, SectionHeader } from '../components/Section';
 import { Button } from '../components/Button';
-import { getWhatsAppUrl } from '../utils/helpers';
+import { assetPath, getWhatsAppUrl } from '../utils/helpers';
 import { contactInfo, personalInfo, recursosVisuais } from '../data/portfolio';
 import { useReducedMotion, useIntersectionObserver } from '../hooks/useIntersectionObserver';
 import { useMemo } from 'react';
@@ -57,7 +57,7 @@ export function Contact() {
         >
           <div className="bg-preto-900/60 backdrop-blur-sm border border-preto-700 rounded-2xl p-8 lg:p-10">
             <img
-              src={recursosVisuais.contact[0]}
+              src={assetPath(recursosVisuais.contact[0])}
               alt="Composição abstrata sobre comunicação digital"
               width="1200"
               height="800"

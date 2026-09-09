@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import { useActiveSection, useReducedMotion, useMediaQuery } from '../hooks/useIntersectionObserver';
 import { scrollToSection } from '../utils/helpers';
-import { cn } from '../utils/helpers';
+import { assetPath, cn } from '../utils/helpers';
 import { Button } from './Button';
 
 const navItems = [
@@ -69,8 +69,8 @@ export function Navigation() {
             whileHover={{ scale: reducedMotion ? 1 : 1.02 }}
             whileTap={{ scale: reducedMotion ? 1 : 0.98 }}
           >
-            <img 
-              src="/imgs/noctra-simbolo-branco-transparente.png" 
+            <img
+              src={assetPath('/imgs/noctra-simbolo-branco-transparente.png')}
               alt="Noctra" 
               className="w-7 h-7"
             />

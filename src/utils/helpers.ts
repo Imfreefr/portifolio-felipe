@@ -2,6 +2,10 @@ export function cn(...classes: (string | undefined | null | false)[]): string {
   return classes.filter(Boolean).join(' ');
 }
 
+export function assetPath(path: string): string {
+  return `${import.meta.env.BASE_URL}${path.replace(/^\//, '')}`;
+}
+
 export function getWhatsAppUrl(message: string): string {
   const phone = '5571982191577';
   const encodedMessage = encodeURIComponent(message);

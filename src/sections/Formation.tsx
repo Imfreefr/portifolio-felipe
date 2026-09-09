@@ -3,7 +3,7 @@ import { Award, FileSpreadsheet, GraduationCap, Target, Brain, Sparkles } from '
 import { Section, SectionHeader } from '../components/Section';
 import { achievements } from '../data/portfolio';
 import { useReducedMotion, useIntersectionObserver } from '../hooks/useIntersectionObserver';
-import { cn } from '../utils/helpers';
+import { assetPath, cn } from '../utils/helpers';
 import { recursosVisuais } from '../data/portfolio';
 
 const achievementDetails = [
@@ -65,7 +65,7 @@ export function Formation() {
 
       <div className="max-w-4xl mx-auto mb-10 overflow-hidden rounded-3xl border border-preto-700 bg-preto-900/50">
         <img
-          src={recursosVisuais.formation[0]}
+          src={assetPath(recursosVisuais.formation[0])}
           alt="Composição visual sobre formação em tecnologia e robótica"
           width="1200"
           height="800"

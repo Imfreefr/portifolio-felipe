@@ -4,7 +4,7 @@ import { FaGithub, FaInstagram, FaLinkedin } from 'react-icons/fa';
 import { getWhatsAppUrl } from '../utils/helpers';
 import { personalInfo } from '../data/portfolio';
 import { useReducedMotion } from '../hooks/useIntersectionObserver';
-import { cn } from '../utils/helpers';
+import { assetPath, cn } from '../utils/helpers';
 
 export function Footer() {
   const reducedMotion = useReducedMotion();
@@ -55,8 +55,8 @@ export function Footer() {
             className="lg:col-span-1"
           >
             <div className="flex items-center gap-2 text-white font-bold text-xl lg:text-2xl mb-4">
-              <img 
-                src="/imgs/noctra-simbolo-branco-transparente.png" 
+              <img
+                src={assetPath('/imgs/noctra-simbolo-branco-transparente.png')}
                 alt="Noctra" 
                 className="w-8 h-8"
               />

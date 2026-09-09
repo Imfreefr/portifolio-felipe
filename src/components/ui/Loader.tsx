@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { cn } from '../../utils/helpers';
+import { assetPath, cn } from '../../utils/helpers';
 
 interface LoaderProps {
   className?: string;
@@ -35,7 +35,7 @@ export function Loader({ className, message = 'Preparando sua experiência...', 
           className="w-20 h-20 rounded-2xl bg-gradient-to-br from-vinho-500 to-vinho-600 flex items-center justify-center"
         >
           <img
-            src="/imgs/noctra-simbolo-branco-transparente.png"
+            src={assetPath('/imgs/noctra-simbolo-branco-transparente.png')}
             alt="Noctra"
             className="w-10 h-10"
           />

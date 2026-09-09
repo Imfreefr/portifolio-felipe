@@ -5,7 +5,7 @@ import { Section, SectionHeader } from '../components/Section';
 import { Button } from '../components/Button';
 import { BentoGrid } from '../components/ui/BentoGrid';
 import SmoothTab from '../components/ui/SmoothTab';
-import { getWhatsAppUrl } from '../utils/helpers';
+import { assetPath, getWhatsAppUrl } from '../utils/helpers';
 import { personalInfo, recursosVisuais, type Projeto } from '../data/portfolio';
 import { useReducedMotion, useIntersectionObserver } from '../hooks/useIntersectionObserver';
 
@@ -73,7 +73,7 @@ export function Portfolio({ onCtaClick }: PortfolioProps) {
         <div className="relative">
           <div className="relative min-h-[28rem] sm:aspect-video sm:min-h-0 bg-preto-900/60 backdrop-blur-sm border border-preto-700 rounded-2xl overflow-hidden group">
             <img
-              src={projetosDestaque[0].image}
+              src={assetPath(projetosDestaque[0].image)}
               alt="Preview abstrata de um sistema web"
               width="1200"
               height="800"
